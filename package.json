@@ -1,0 +1,19 @@
+{
+  "name": "electron-accelerator",
+  "version": "0.0.1",
+  "description": "Build, Debug, Package and Release for electron apps. A electron accelerator template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Build",
+    "Debug",
+    "Package",
+    "Release",
+    "Autoupdate",
+    "Electron"
+  ],
+  "author": "Amy Palamountain",
+  "license": "MIT"
+}
