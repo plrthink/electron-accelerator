@@ -74,7 +74,7 @@ function createTemplate(result){
 
   copy(
       { src: __dirname + '/template'
-      , dest: __dirname + '/out'
+      , dest: process.cwd()
       }
     , function () {
       console.log('done!')
