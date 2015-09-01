@@ -4,7 +4,7 @@
   "description": "Build, Debug, Package and Release for electron apps. A electron accelerator template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [
     "Build",
@@ -15,5 +15,10 @@
     "Electron"
   ],
   "author": "Amy Palamountain",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "colors": "^1.1.2",
+    "directory-copy": "^0.1.0",
+    "prompt": "^0.2.14"
+  }
 }
