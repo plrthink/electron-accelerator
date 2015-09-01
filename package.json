@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "Build, Debug, Package and Release for electron apps. A electron accelerator template",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
+  "bin": {
+     "electron-accelerator": "index.js"
+   },
   "keywords": [
     "Build",
     "Debug",
@@ -16,7 +16,7 @@
   ],
   "author": "Amy Palamountain",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "colors": "^1.1.2",
     "directory-copy": "^0.1.0",
     "prompt": "^0.2.14"

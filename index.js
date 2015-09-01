@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var prompt = require('prompt');
 var confirm = require('prompt');
 var colors = require('colors');
