@@ -2,7 +2,9 @@
 var prompt = require('prompt');
 var confirm = require('prompt');
 var colors = require('colors');
-var copy = require('directory-copy')
+var copy = require('directory-copy');
+var fs = require('fs')
+var Mustache = require('mustache');
 
 prompt.start();
 confirm.start();
@@ -79,6 +81,22 @@ function createTemplate(result){
       }
     , function () {
       console.log('done!')
+
+      var file = process.cwd() + '/config.json';
+
+      fs.readFile(file, 'utf8', function (err,data) {
+        if (err) {
+          return console.log(err);
+        }
+        var rendered = Mustache.render(data, result);
+
+        fs.writeFile(file, rendered, function (err) {
+          if (err) return console.log(err);
+
+        });
+      });
+
+
     })
     .on('log', function (msg, level) {
       // Level is debug, info, warn or error

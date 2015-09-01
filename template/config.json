@@ -1,13 +1,13 @@
 {
-  "applicationName"  : "hello-world",
+  "applicationName"  : "{{applicationName}}",
   "electronVersion"  : "0.27.1",
-  "authors"          : "Somebodies name",
+  "authors"          : "{{authorsName}}",
 
   "buildsDirectory"  : "./builds",
   "releaseDirectory" : "./releases",
 
-  "platform"         : "all",
-  "arch"             : "x64",
+  "platform"         : "{{platform}}",
+  "arch"             : "{{architecture}}",
 
   "ignorePackages"   : [
     "electron-packager",

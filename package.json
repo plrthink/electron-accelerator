@@ -4,8 +4,8 @@
   "description": "Build, Debug, Package and Release for electron apps. A electron accelerator template",
   "main": "index.js",
   "bin": {
-     "electron-accelerator": "index.js"
-   },
+    "electron-accelerator": "index.js"
+  },
   "keywords": [
     "Build",
     "Debug",
@@ -19,6 +19,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "directory-copy": "^0.1.0",
-    "prompt": "^0.2.14"
+    "prompt": "^0.2.14",
+    "mustache": "^2.1.3"
   }
 }
