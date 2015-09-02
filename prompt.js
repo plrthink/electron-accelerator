@@ -11,13 +11,13 @@ schema = {
   properties: {
 
     authorsName:{
-      description: 'What is your name',
+      description: 'What is your name'.magenta,
       type: 'string',
       required: true
     },
 
     applicationName:{
-      description: 'What is your application\'s name',
+      description: 'What is your application\'s name'.magenta,
       pattern: /^\w+$/,
       type: 'string',
       required: true,
@@ -25,17 +25,17 @@ schema = {
     },
 
     applicationDescription:{
-      description: 'Application Description',
+      description: 'Application Description'.magenta,
       type: 'string',
     },
 
     applicationRepository:{
-      description: 'Repository Url',
+      description: 'Repository Url'.magenta,
       type: 'string',
     },
 
     platform:{
-      description: 'Which platform will your app run on?' + ' all, win32, darwin or linux'.gray,
+      description: 'Which platform will your app run on?'.magenta + ' all, win32, darwin or linux'.gray,
       type: 'string',
       conform: function (value) {
         var x = value.trim();
@@ -46,7 +46,7 @@ schema = {
     },
 
     architecture:{
-      description: 'Which architecture will your app run on?' + ' all, ia32 or x64'.grey,
+      description: 'Which architecture will your app run on?'.magenta + ' all, ia32 or x64'.grey,
       type: 'string',
       conform: function (value) {
         var x = value.trim();
@@ -62,7 +62,7 @@ schema = {
 confirmSchema = {
   properties: {
     yes:{
-      description: 'Confirm'+ ' (Yes)'.gray,
+      description: 'Confirm'.magenta + ' (Yes)'.gray,
       type: 'string',
       required: true
     }
@@ -78,7 +78,7 @@ promptForInput = function(done){
     if(err){
       throw err;
     }
-    
+
     console.log('');
     console.log('Ok, human. How does this look?\n');
 
