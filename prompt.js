@@ -1,11 +1,13 @@
 'use strict'
 
-var AcceleratorPrompt, prompt, confirm, colors, schema,
-    confirmSchema, promptForInput;
+var AcceleratorPrompt, prompt, confirm, colors, schema, _, windowsSchema,
+    confirmSchema, windowsSetup, promptForInput, confirmOutput;
 
 prompt = require('prompt');
 confirm = require('prompt');
+windowsSetup = require('prompt');
 colors = require('colors');
+_ = require('underscore');
 
 schema = {
   properties: {
@@ -56,6 +58,42 @@ schema = {
       message: 'Must be one of the following: all, ia32 or x64'.red
     },
 
+    setupWindowsReleases:{
+      description: 'Do you want to setup Windows releases'.magenta + ' yes or no'.gray,
+      type: 'string',
+      conform: function (value) {
+        var x = value.toLowerCase().trim();
+        return x === 'yes' || x === 'no';
+      },
+      required: true,
+      message: 'Must be yes or no'.red
+    }
+  }
+};
+
+windowsSchema = {
+  properties: {
+    squirrelS3Bucket:{
+      description: 'What is your Squirrel for Windows S3 bucket'.magenta,
+      pattern: /^\w+$/,
+      type: 'string',
+      required: true,
+      message: 'S3 bucket name must not have spaces'.red
+    },
+    squirrelS3BucketPrefix:{
+      description: 'What is your Squirrel for Windows S3 prefix'.magenta,
+      pattern: /^\w+$/,
+      type: 'string',
+      required: true,
+      message: 'Bucket prefix name must not have spaces'.red
+    },
+    squirrelWindowsUpdateUrl:{
+      description: 'What is your Squirrel for Windows update url'.magenta,
+      pattern: /^\w+$/,
+      type: 'string',
+      required: true,
+      message: 'Update url  must not have spaces'.red
+    }
   }
 };
 
@@ -71,6 +109,26 @@ confirmSchema = {
 
 AcceleratorPrompt = function(){}
 
+confirmOutput = function(result, done){
+  console.log('');
+  console.log('Ok, human. How does this look?\n');
+
+  for (var key in result) {
+  if (result.hasOwnProperty(key)) {
+     console.log(key + ': ' + result[key]);
+    }
+  }
+
+  console.log('');
+
+  prompt.get(confirmSchema, function(error, confirm){
+    if(confirm.yes.trim().toLowerCase() == 'yes'){
+      console.log('All right, your template is comming right up.\n');
+      done(result);
+    }
+  });
+}
+
 promptForInput = function(done){
 
   prompt.get(schema, function (err, result) {
@@ -79,23 +137,17 @@ promptForInput = function(done){
       throw err;
     }
 
-    console.log('');
-    console.log('Ok, human. How does this look?\n');
-
-    for (var key in result) {
-    if (result.hasOwnProperty(key)) {
-       console.log(key + ': ' + result[key]);
-      }
+    if(result.setupWindowsReleases.toLowerCase() == 'yes'){
+      //prompt for windows
+      windowsSetup.get(windowsSchema, function(error, windowsResult){
+            if(err){
+              throw err;
+            }
+            confirmOutput(_.extend(result, windowsResult),done);
+      });
+    }else {
+      confirmOutput(result,done);
     }
-
-    console.log('');
-
-    prompt.get(confirmSchema, function(error, confirm){
-      if(confirm.yes.trim().toLowerCase() == 'yes'){
-        console.log('All right, your template is comming right up.\n');
-        done(result);
-      }
-    });
   });
 }
 

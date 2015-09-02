@@ -19,7 +19,7 @@
     "progressbar",
     "s3"],
 
-   "s3BucketName"    : "electron-squirrel",
-   "s3PrefixName"    : "hello-world/",
-   "windowsUpdateUrl": "https://s3-ap-southeast-2.amazonaws.com/electron-squirrel/hello-world"
+   "s3BucketName"    : "{{squirrelS3Bucket}}",
+   "s3PrefixName"    : "{{squirrelS3BucketPrefix}}",
+   "windowsUpdateUrl": "{{squirrelWindowsUpdateUrl}}"
 }
