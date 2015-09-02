@@ -82,20 +82,45 @@ function createTemplate(result){
     , function () {
       console.log('done!')
 
-      var file = process.cwd() + '/config.json';
+      var configFile = process.cwd() + '/config.json';
+      var packageFile = process.cwd() + '/package.json';
+      var readMeFile = process.cwd() + '/readme.md';
 
-      fs.readFile(file, 'utf8', function (err,data) {
+      fs.readFile(configFile, 'utf8', function (err,data) {
         if (err) {
           return console.log(err);
         }
         var rendered = Mustache.render(data, result);
 
-        fs.writeFile(file, rendered, function (err) {
+        fs.writeFile(configFile, rendered, function (err) {
           if (err) return console.log(err);
 
         });
       });
 
+      fs.readFile(packageFile, 'utf8', function (err,data) {
+        if (err) {
+          return console.log(err);
+        }
+        var rendered = Mustache.render(data, result);
+
+        fs.writeFile(packageFile, rendered, function (err) {
+          if (err) return console.log(err);
+
+        });
+      });
+
+      fs.readFile(readMeFile, 'utf8', function (err,data) {
+        if (err) {
+          return console.log(err);
+        }
+        var rendered = Mustache.render(data, result);
+
+        fs.writeFile(readMeFile, rendered, function (err) {
+          if (err) return console.log(err);
+
+        });
+      });
 
     })
     .on('log', function (msg, level) {
