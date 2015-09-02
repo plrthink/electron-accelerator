@@ -48,5 +48,13 @@ squirrelWindowsUpdateUrl  the ur that the windows installer will update from
 
 This will:
 
+- Unpack https://github.com/ammeep/electron-accelerator-template
+- Apply your custom configuration
+- Your new project will support
+  - ``script/bootstrap`` - quickly and easily set up everything you need to get started with electron development
+  - ``script/build`` - create custom builds for your required platforms
+  - ``script/server`` - quickly run up your electron build to test
+  - ``script/server-debug`` - quickly run up your electron build with node-inspector debugging
+
 
 ### Related projects and reading
