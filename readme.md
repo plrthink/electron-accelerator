@@ -1,6 +1,13 @@
 # Electron-accelerator
 
-Get up and running with a customisable electron build process! Supports building, debugging and releasing for Windows, Linux and Mac platforms.
+Get up and running with a customisable electron build process!
+
+This tool will request some configuration for your new electron project and the:
+
+- Unpack https://github.com/ammeep/electron-accelerator-template
+- Apply your custom configuration
+
+The end result is a project scaffold that supports building, debugging and releasing for Windows, Linux and Mac platforms.
 
 ### Installation
 
