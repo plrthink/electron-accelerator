@@ -9,11 +9,12 @@ Mustache = require('mustache');
 
 TemplateWriter = function(){};
 
-applyTemplate = function(file, settings, done){
-  console.log('Applying settings to '+ file + '....');
+applyTemplate = function(file, settings){
+  console.log('Applying settings to '+ file );
   fs.readFile(file, 'utf8', function (err,data) {
     if (err) {
       return console.log(err);
+    }
 
     var rendered = Mustache.render(data, settings);
     fs.writeFile(file, rendered, function (err) {
@@ -21,17 +22,16 @@ applyTemplate = function(file, settings, done){
       return;
     });
   });
-}
+};
 
 copyRawTemplate = function(done){
-  console.log('Initalising electron project structure')
+  console.log('Creating electron project structure'.gray)
   var options = { src: __dirname + '/template', dest: process.cwd()};
   copy(options, function(){
     console.log('Done');
     done();
   })
   .on('log', function (msg, level) {
-    console.log(level + ':' + msg);
     if(level == 'warn' || level == 'error'){
       console.log(level + ': ' + msg)
     }
@@ -39,7 +39,7 @@ copyRawTemplate = function(done){
 };
 
 applyToTemplates = function(settings){
-  console.log('Applying custom configuration' + settings);
+  console.log('Applying custom configuration'.gray);
   var cwd, configFile, packageFile, readMeFile;
 
   cwd = process.cwd();
@@ -51,12 +51,13 @@ applyToTemplates = function(settings){
   applyTemplate(packageFile, settings);
   applyTemplate(readMeFile, settings);
 
-  console.log('Done');
+  console.log('Done'.gray);
 }
 
-TemplateWriter.prototype.copyTempateWithResult = function(settings){
+TemplateWriter.prototype.copyTempateWithResult = function(settings, done){
   copyRawTemplate(function(){
       applyToTemplates(settings);
+      done();
   })
 }
 

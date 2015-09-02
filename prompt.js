@@ -11,13 +11,13 @@ schema = {
   properties: {
 
     authorsName:{
-      description: 'What is your name'.magenta,
+      description: 'What is your name',
       type: 'string',
       required: true
     },
 
     applicationName:{
-      description: 'What is your application\'s name'.magenta,
+      description: 'What is your application\'s name',
       pattern: /^\w+$/,
       type: 'string',
       required: true,
@@ -25,17 +25,17 @@ schema = {
     },
 
     applicationDescription:{
-      description: 'Description'.magenta,
+      description: 'Application Description',
       type: 'string',
     },
 
     applicationRepository:{
-      description: 'Repository Url'.magenta,
+      description: 'Repository Url',
       type: 'string',
     },
 
     platform:{
-      description: 'Which platform will your app run on?'.magenta +' all, win32, darwin or linux'.gray,
+      description: 'Which platform will your app run on?' + ' all, win32, darwin or linux'.gray,
       type: 'string',
       conform: function (value) {
         var x = value.trim();
@@ -46,7 +46,7 @@ schema = {
     },
 
     architecture:{
-      description: 'Which architecture will your app run on?'.magenta + ' all, ia32 or x64'.grey,
+      description: 'Which architecture will your app run on?' + ' all, ia32 or x64'.grey,
       type: 'string',
       conform: function (value) {
         var x = value.trim();
@@ -62,7 +62,7 @@ schema = {
 confirmSchema = {
   properties: {
     yes:{
-      description: 'Confirm (Yes)'.magenta,
+      description: 'Confirm'+ ' (Yes)'.gray,
       type: 'string',
       required: true
     }
@@ -79,7 +79,6 @@ promptForInput = function(done){
       throw err;
     }
 
-    console.log('---------------------------------------------------------------\n'.rainbow);
     console.log('Ok, human. How does this look?\n');
 
     for (var key in result) {
@@ -88,6 +87,8 @@ promptForInput = function(done){
       }
     }
 
+    console.log('\n');
+    
     prompt.get(confirmSchema, function(error, confirm){
       if(confirm.yes.trim().toLowerCase() == 'yes'){
         console.log('All right, your template is comming right up.\n');
@@ -104,13 +105,6 @@ AcceleratorPrompt.prototype.promptForSetup = function(done){
 
   prompt.message = "";
   prompt.delimiter = " ";
-
-  console.log('---------------------------------------------------------------\n'.rainbow);
-  console.log('Hello Human\n');
-  console.log('I\'d like to help you get started with your electron app\n');
-  console.log('First, I\'ll ask you a few questions');
-  console.log('And then create I\'ll create a template that suits your needs\n');
-  console.log('---------------------------------------------------------------\n'.rainbow);
 
   promptForInput(done);
 }
