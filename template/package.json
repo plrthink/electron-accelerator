@@ -1,6 +1,6 @@
 {
   "name": "{{applicationName}}",
-  "version": "{{version}}",
+  "version": "0.0.1",
   "description": "{{applicationDescription}}",
   "license" : "MIT",
   "repository": "{{applicationRepository}}",

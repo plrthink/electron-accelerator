@@ -37,6 +37,16 @@ var schema = {
         message: 'Application name must not have spaces'.red
       },
 
+      applicationDescription:{
+        description: 'Description'.magenta,
+        type: 'string',
+      },
+
+      applicationRepository:{
+        description: 'Repository Url'.magenta,
+        type: 'string',
+      },
+      
       platform:{
         description: 'Which platform will your app run on?'.magenta +' all, win32, darwin or linux'.gray,
         type: 'string',
@@ -57,7 +67,8 @@ var schema = {
         },
         required: true,
         message: 'Must be one of the following: all, ia32 or x64'.red
-      }
+      },
+
     }
 };
 
