@@ -10,7 +10,6 @@ Mustache = require('mustache');
 TemplateWriter = function(){};
 
 applyTemplate = function(file, settings){
-  console.log('Applying settings to '+ file );
   fs.readFile(file, 'utf8', function (err,data) {
     if (err) {
       return console.log(err);
@@ -25,10 +24,9 @@ applyTemplate = function(file, settings){
 };
 
 copyRawTemplate = function(done){
-  console.log('Creating electron project structure'.gray)
+  console.log('Creating electron project structure')
   var options = { src: __dirname + '/template', dest: process.cwd()};
   copy(options, function(){
-    console.log('Done');
     done();
   })
   .on('log', function (msg, level) {
@@ -39,7 +37,7 @@ copyRawTemplate = function(done){
 };
 
 applyToTemplates = function(settings){
-  console.log('Applying custom configuration'.gray);
+  console.log('Applying custom configuration');
   var cwd, configFile, packageFile, readMeFile;
 
   cwd = process.cwd();
@@ -50,8 +48,6 @@ applyToTemplates = function(settings){
   applyTemplate(configFile, settings);
   applyTemplate(packageFile, settings);
   applyTemplate(readMeFile, settings);
-
-  console.log('Done'.gray);
 }
 
 TemplateWriter.prototype.copyTempateWithResult = function(settings, done){

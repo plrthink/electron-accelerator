@@ -78,21 +78,21 @@ promptForInput = function(done){
     if(err){
       throw err;
     }
-
+    
+    console.log('');
     console.log('Ok, human. How does this look?\n');
 
     for (var key in result) {
     if (result.hasOwnProperty(key)) {
-      console.log(key + ': ' + result[key]);
+       console.log(key + ': ' + result[key]);
       }
     }
 
-    console.log('\n');
-    
+    console.log('');
+
     prompt.get(confirmSchema, function(error, confirm){
       if(confirm.yes.trim().toLowerCase() == 'yes'){
         console.log('All right, your template is comming right up.\n');
-        console.log('---------------------------------------------------------------\n'.rainbow);
         done(result);
       }
     });

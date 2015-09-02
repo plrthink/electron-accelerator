@@ -3,6 +3,7 @@ var colors = require('colors');
 var prompt = require('./prompt');
 var templateWriter = require('./template-writer');
 
+console.log();
 console.log('---------------------------------------------------------------\n'.rainbow);
 console.log('Hello Human\n');
 console.log('I\'d like to help you get started with your electron app\n');
