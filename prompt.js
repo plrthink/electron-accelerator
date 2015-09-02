@@ -1,13 +1,14 @@
 'use strict'
 
 var AcceleratorPrompt, prompt, confirm, colors, schema, _, windowsSchema,
-    confirmSchema, windowsSetup, promptForInput, confirmOutput;
+    confirmSchema, windowsSetup, promptForInput, confirmOutput, pretty;
 
 prompt = require('prompt');
 confirm = require('prompt');
 windowsSetup = require('prompt');
 colors = require('colors');
 _ = require('underscore');
+pretty = require('js-object-pretty-print').pretty;
 
 schema = {
   properties: {
@@ -113,12 +114,7 @@ confirmOutput = function(result, done){
   console.log('');
   console.log('Ok, human. How does this look?\n');
 
-  for (var key in result) {
-  if (result.hasOwnProperty(key)) {
-     console.log(key + ': ' + result[key]);
-    }
-  }
-
+  console.log(pretty(result));
   console.log('');
 
   prompt.get(confirmSchema, function(error, confirm){
