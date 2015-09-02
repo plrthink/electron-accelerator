@@ -1,14 +1,18 @@
 'use strict'
 
 var AcceleratorPrompt, prompt, confirm, colors, schema, _, windowsSchema,
-    confirmSchema, windowsSetup, promptForInput, confirmOutput, pretty;
+    confirmSchema, windowsSetup, promptForInput, confirmOutput, pretty, argv;
 
+argv = require('optimist').argv;
 prompt = require('prompt');
 confirm = require('prompt');
 windowsSetup = require('prompt');
 colors = require('colors');
 _ = require('underscore');
 pretty = require('js-object-pretty-print').pretty;
+
+prompt.override = argv;
+windowsSetup.override = argv;
 
 schema = {
   properties: {
