@@ -1,6 +1,6 @@
 {
   "name": "electron-accelerator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Build, Debug, Package and Release for electron apps. A electron accelerator template",
   "main": "index.js",
   "bin": {

@@ -5,15 +5,12 @@ var config = require('../config.json');
 // Report crashes to our server.
 require('crash-reporter').start();
 
-app.applicationName = config.applicationName;
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is GCed.
 var mainWindow = null;
 
-
 if (process.platform === 'win32') {
-  
+
   var installer = require('./squirrel-installer');
   var SquirrelUpdater = require('./squirrel-updater');
   squirrelCommand = process.argv[1];
@@ -37,8 +34,6 @@ app.on('ready', function() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
-
-  applicationMenus.setup();
 });
 
 app.on('window-all-closed', function() {
