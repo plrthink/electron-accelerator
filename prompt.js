@@ -82,10 +82,11 @@ promptForInput = function(done){
     console.log('---------------------------------------------------------------\n'.rainbow);
     console.log('Ok, human. How does this look?\n');
 
-    console.log('Authors name: ' + result.authorsName);
-    console.log('Application Name: ' + result.applicationName);
-    console.log('Platform: ' + result.platform);
-    console.log('Architecture: ' + result.architecture);
+    for (var key in result) {
+    if (result.hasOwnProperty(key)) {
+      console.log(key + ': ' + result[key]);
+      }
+    }
 
     prompt.get(confirmSchema, function(error, confirm){
       if(confirm.yes.trim().toLowerCase() == 'yes'){
