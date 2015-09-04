@@ -24,10 +24,10 @@ In your project directory.
 Usage: electron-accelerator
 
 This will prompt you to input options.
-You can also supply these at the command line 
+You can also supply these at the command line
 
 Example: electron-accelerator --authorsName=<name>
-  
+
 Required options:
 
 authorsName               any string
@@ -36,7 +36,7 @@ platform                  all, linux, win32 or darwin
 architecture              all, ia32 or x64
 applicationDescription    the description of your application
 applicationRepository     the url of the repository for your application
-setupWindowsReleases      yes, no 
+setupWindowsReleases      yes, no
 
 Optional arguments:
 
