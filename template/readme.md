@@ -1,4 +1,4 @@
-# {{applicationName}}
+# {{application-name}}
 
 {{applicationName}} is a cross platform application, built on [Electron](https://github.com/atom/electron)
 

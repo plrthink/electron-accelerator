@@ -1,9 +1,9 @@
 {
-  "name": "{{applicationName}}",
+  "name": "{{application-name}}",
   "version": "0.0.1",
-  "description": "{{applicationDescription}}",
+  "description": "{{application-description}}",
   "license" : "MIT",
-  "repository": "{{applicationRepository}}",
+  "repository": "{{repository-url}}",
   "main": "src/main.js",
   "devDependencies": {
     "electron-packager": "^5.0.2",

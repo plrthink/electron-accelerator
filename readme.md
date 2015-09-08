@@ -30,19 +30,19 @@ Example: electron-accelerator --authorsName=<name>
 
 Required options:
 
-authorsName               any string
-applicationName           any string
-platform                  all, linux, win32 or darwin
-architecture              all, ia32 or x64
-applicationDescription    the description of your application
-applicationRepository     the url of the repository for your application
-setupWindowsReleases      yes, no
+authors-name               any string
+application-name           any string
+platform                   all, linux, win32 or darwin
+architecture               all, ia32 or x64
+application-description    the description of your application
+repository-url             the url of the repository for your application
+setup-windows-releases     yes, no
 
 Optional arguments:
 
-squirrelS3Bucket          the bucket name where a windows installer can be uploaded
-squirrelS3BucketPrefix    the bucket prefix
-squirrelWindowsUpdateUrl  the ur that the windows installer will update from
+squirrel-s3-bucket           the bucket name where a windows installer can be uploaded
+squirrel-s3-bucket-prefix    the bucket prefix
+squirrel-windows-update-url  the url that the windows installer will update from
 
 ```
 
