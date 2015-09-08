@@ -3,7 +3,7 @@
 var AcceleratorPrompt, prompt, confirm, colors, schema, _, windowsSchema,
     confirmSchema, windowsSetup, promptForInput, confirmOutput, pretty, argv;
 
-argv = require('optimist').argv;
+argv = require('yargs').argv;
 prompt = require('prompt');
 confirm = require('prompt');
 windowsSetup = require('prompt');
