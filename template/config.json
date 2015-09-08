@@ -1,7 +1,7 @@
 {
-  "applicationName"  : "{{applicationName}}",
+  "applicationName"  : "{{application-name}}",
   "electronVersion"  : "0.27.1",
-  "authors"          : "{{authorsName}}",
+  "authors"          : "{{authors-name}}",
 
   "buildsDirectory"  : "./builds",
   "releaseDirectory" : "./releases",
@@ -19,7 +19,7 @@
     "progressbar",
     "s3"],
 
-   "s3BucketName"    : "{{squirrelS3Bucket}}",
-   "s3PrefixName"    : "{{squirrelS3BucketPrefix}}",
-   "windowsUpdateUrl": "{{squirrelWindowsUpdateUrl}}"
+   "s3BucketName"    : "{{squirrel-s3-bucket}}",
+   "s3PrefixName"    : "{{squirrel-s3-bucket-prefix}}",
+   "windowsUpdateUrl": "{{squirrel-windows-update-url}}"
 }

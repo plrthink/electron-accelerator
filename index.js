@@ -15,6 +15,7 @@ prompt.promptForSetup(function(result){
   templateWriter.copyTempateWithResult(result, function(){
     console.log('Your electron app is ready to go!\n');
     console.log('To boostrap your application run \'script\/bootstrap\'\n');
+    console.log('Be sure to check out your projects read me for more information\n');
     console.log('Good luck!\n');
     console.log('---------------------------------------------------------------\n'.rainbow);
   });

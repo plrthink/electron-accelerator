@@ -17,13 +17,13 @@ windowsSetup.override = argv;
 schema = {
   properties: {
 
-    authorsName:{
+    'authors-name':{
       description: 'What is your name'.magenta,
       type: 'string',
       required: true
     },
 
-    applicationName:{
+    'application-name':{
       description: 'What is your application\'s name'.magenta,
       pattern: /^\w+$/,
       type: 'string',
@@ -31,12 +31,12 @@ schema = {
       message: 'Application name must not have spaces'.red
     },
 
-    applicationDescription:{
-      description: 'Application Description'.magenta,
+    'application-description':{
+      description: 'Description'.magenta,
       type: 'string',
     },
 
-    applicationRepository:{
+    'repository-url':{
       description: 'Repository Url'.magenta,
       type: 'string',
     },
@@ -63,7 +63,7 @@ schema = {
       message: 'Must be one of the following: all, ia32 or x64'.red
     },
 
-    setupWindowsReleases:{
+    'setup-windows-releases':{
       description: 'Do you want to setup Windows releases'.magenta + ' yes or no'.gray,
       type: 'string',
       conform: function (value) {
@@ -78,21 +78,21 @@ schema = {
 
 windowsSchema = {
   properties: {
-    squirrelS3Bucket:{
+    'squirrel-s3-bucket':{
       description: 'What is your Squirrel for Windows S3 bucket'.magenta,
       pattern: /^\w+$/,
       type: 'string',
       required: true,
       message: 'S3 bucket name must not have spaces'.red
     },
-    squirrelS3BucketPrefix:{
+    'squirrel-s3-bucket-prefix':{
       description: 'What is your Squirrel for Windows S3 prefix'.magenta,
       pattern: /^\w+$/,
       type: 'string',
       required: true,
       message: 'Bucket prefix name must not have spaces'.red
     },
-    squirrelWindowsUpdateUrl:{
+    'squirrel-windows-update-url':{
       description: 'What is your Squirrel for Windows update url'.magenta,
       pattern: /^\w+$/,
       type: 'string',
@@ -137,7 +137,7 @@ promptForInput = function(done){
       throw err;
     }
 
-    if(result.setupWindowsReleases.toLowerCase() == 'yes'){
+    if(result['setup-windows-releases'].toLowerCase() == 'yes'){
       //prompt for windows
       windowsSetup.get(windowsSchema, function(error, windowsResult){
             if(err){
