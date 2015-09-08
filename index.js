@@ -6,7 +6,7 @@ var templateWriter = require('./template-writer');
 
 if (argv.version || argv.v) {
    var packageFile = require('./package.json');
-   console.log('electron-accelerator '+ packageFile.version);
+   console.log(packageFile.name + '@' + packageFile.version);
    process.exit();
 }
 
