@@ -7,7 +7,7 @@ echo.
 echo ---------------------------------------------------------------
 echo.
 
-./node_modules/electron-prebuilt/dist/electron.exe .
+node server
 
 echo.
 echo ---------------------------------------------------------------
