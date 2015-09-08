@@ -62,6 +62,6 @@ This will:
 ### Related projects and reading
 This project stands on the shoulders of giants. It uses the following packages:
 
-- [electron-prebuilt](https://github.com/maxogden/electron-packager)
-- [electron-packager](https://github.com/mafintosh/electron-prebuilt)
+- [electron-packager](https://github.com/maxogden/electron-packager)
+- [electron-prebuilt](https://github.com/mafintosh/electron-prebuilt)
 - [grunt-electron-installer](https://github.com/atom/grunt-electron-installer)
