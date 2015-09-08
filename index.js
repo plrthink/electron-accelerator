@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 var colors = require('colors');
+var argv = require('yargs').argv;
 var prompt = require('./prompt');
 var templateWriter = require('./template-writer');
+
+if (argv.version || argv.v) {
+   var packageFile = require('./package.json');
+   console.log('electron-accelerator '+ packageFile.version);
+   process.exit();
+}
 
 console.log();
 console.log('---------------------------------------------------------------\n'.rainbow);
