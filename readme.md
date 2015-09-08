@@ -26,7 +26,7 @@ Usage: electron-accelerator
 This will prompt you to input options.
 You can also supply these at the command line
 
-Example: electron-accelerator --authorsName=<name>
+Example: electron-accelerator --authors-name=Amy --application-name=Foo --platform=all --architecture=x64
 
 Required options:
 
