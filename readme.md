@@ -4,7 +4,7 @@ Get up and running with a customisable electron build process!
 
 This tool will request some configuration for your new electron project and the:
 
-- Unpack https://github.com/ammeep/electron-accelerator-template
+- Unpack a template to the current working directory.
 - Apply your custom configuration
 
 The end result is a project scaffold that supports building, debugging and releasing for Windows, Linux and Mac platforms.
@@ -48,8 +48,10 @@ squirrelWindowsUpdateUrl  the ur that the windows installer will update from
 
 This will:
 
-- Unpack https://github.com/ammeep/electron-accelerator-template
+
+- Unpack a template to the current working directory.
 - Apply your custom configuration
+- Write a ``readme.md`` to your project. The read me will describe how to build and release your electron app.
 - Your new project will support
   - ``script/bootstrap`` - quickly and easily set up everything you need to get started with electron development
   - ``script/build`` - create custom builds for your required platforms
@@ -58,3 +60,8 @@ This will:
 
 
 ### Related projects and reading
+This project stands on the shoulders of giants. It uses the following packages:
+
+- [electron-prebuilt](https://github.com/maxogden/electron-packager)
+- [electron-packager](https://github.com/mafintosh/electron-prebuilt)
+- [grunt-electron-installer)](https://github.com/atom/grunt-electron-installer)
