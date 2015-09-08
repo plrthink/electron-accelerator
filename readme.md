@@ -1,5 +1,7 @@
 # Electron-accelerator
 
+[![npm version](https://badge.fury.io/js/electron-accelerator.svg)](http://badge.fury.io/js/electron-accelerator)
+
 Get up and running with a customisable electron build process!
 
 This tool will request some configuration for your new electron project and the:
