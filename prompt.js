@@ -114,8 +114,6 @@ confirmSchema = {
   }
 };
 
-AcceleratorPrompt = function(){}
-
 confirmOutput = function(result, done){
   console.log('');
   console.log('Ok, human. How does this look?\n');
@@ -153,8 +151,8 @@ promptForInput = function(done){
   });
 }
 
-AcceleratorPrompt.prototype.promptForSetup = function(done){
+var promptForSetup = function(done){
   promptForInput(done);
 }
 
-module.exports = new AcceleratorPrompt();
+module.exports = promptForSetup;

@@ -28,7 +28,7 @@ module.exports = function(callback){
 
   writeOpening();
 
-  prompt.promptForSetup(function(result){
+  prompt(function(result){
     templateWriter.copyTempateWithResult(result, function(){
       writeClosing();
       callback(0);
