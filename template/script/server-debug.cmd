@@ -8,7 +8,7 @@ echo ---------------------------------------------------------------
 echo.
 
 echo Staring node inspector, and your app in debug mode
-grunt debug
+npm run debug
 
 echo.
 echo ---------------------------------------------------------------

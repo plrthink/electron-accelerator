@@ -9,7 +9,7 @@ echo.
 echo Running grunt build
 echo.
 
-grunt build
+npm run build
 
 echo.
 echo ---------------------------------------------------------------
