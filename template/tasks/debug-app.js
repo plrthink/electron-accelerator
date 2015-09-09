@@ -21,13 +21,13 @@ module.exports = function(grunt) {
     var remoteDebugger;
 
     if(process.platform === 'win32') {
-      debuggerProcess = proc.exec('node-inspector');
-      electronProcess = proc.spawn(electron, ['--debug=5858' ,'main.js']);
-      remoteDebugger = open('http://127.0.0.1:8080/?ws=127.0.0.1:8080&port=5858', 'chrome')
+      debuggerProcess = proc.exec('node-inspector', ['--web-port=1337']);
+      electronProcess = proc.spawn(electron, ['--debug=5858' ,'.']);
+      remoteDebugger = open('http://127.0.0.1:1337/?ws=127.0.0.1:8080&port=5858', 'chrome')
     }else {
-      debuggerProcess = proc.spawn('node-inspector');
-      electronProcess = proc.spawn(electron, ['--debug=5858' ,'main.js']);
-      remoteDebugger = open('http://127.0.0.1:8080/?ws=127.0.0.1:8080&port=5858', 'google chrome')
+      debuggerProcess = proc.spawn('node-inspector', ['--web-port=1337']);
+      electronProcess = proc.spawn(electron, ['--debug=5858', '.']);
+      remoteDebugger = open('http://127.0.0.1:1337/?ws=127.0.0.1:8080&port=5858', 'google chrome')
     }
 
     electronProcess.stdout.on('data', function (x) { grunt.log.writeln('[electron] ' + x);});
