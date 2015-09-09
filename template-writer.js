@@ -10,17 +10,9 @@ Mustache = require('mustache');
 TemplateWriter = function(){};
 
 applyTemplate = function(file, settings){
-  fs.readFile(file, 'utf8', function (err,data) {
-    if (err) {
-      return console.log(err);
-    }
-
-    var rendered = Mustache.render(data, settings);
-    fs.writeFile(file, rendered, function (err) {
-      if (err) return console.log(err);
-      return;
-    });
-  });
+  var data = fs.readFileSync(file, 'utf8');
+  var rendered = Mustache.render(data, settings);
+  fs.writeFileSync(file, rendered);
 };
 
 copyRawTemplate = function(done){
