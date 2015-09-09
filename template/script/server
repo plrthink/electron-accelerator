@@ -1,16 +1,31 @@
-#!/usr/bin/env bash
+#!/usr/bin/env node
 
-echo ---------------------------------------------------------------
-echo
-echo Hello Human
-echo Let''s see some science!
-echo
-echo ---------------------------------------------------------------
-echo
+var os, proc, path, platform, paths;
 
-electron .
+os = require('os');
+proc = require('child_process');
+path = require('path');
+platform = os.platform()
 
-echo
-echo ---------------------------------------------------------------
-echo
-echo Done!
+console.log('---------------------------------------------------------------');
+console.log();
+console.log('Hello Human');
+console.log('Let\'s see some science!');
+console.log();
+console.log('---------------------------------------------------------------');
+console.log();
+
+paths = {
+  darwin: path.join(process.cwd(), './node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron'),
+  linux: path.join(process.cwd(), './node_modules/electron-prebuilt/dist/electron'),
+  win32: path.join(process.cwd(), './node_modules/electron-prebuilt/dist/electron.exe')
+}
+
+if (!paths[platform]) throw new Error('Unknown platform: ' + platform)
+
+proc.spawn(paths[platform],['.'], {stdio: 'inherit'});
+
+console.log();
+console.log('---------------------------------------------------------------');
+console.log();
+console.log('Done');
