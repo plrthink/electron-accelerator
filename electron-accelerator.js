@@ -28,7 +28,8 @@ module.exports = function(callback){
 
   writeOpening();
 
-  prompt(function(result){
+  prompt(function(err, result){
+    if (err) return callback(1);
     templateWriter.copyTempateWithResult(result, function(){
       writeClosing();
       callback(0);

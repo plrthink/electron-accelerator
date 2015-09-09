@@ -121,10 +121,11 @@ confirmOutput = function(result, done){
   console.log(pretty(result));
   console.log('');
 
-  prompt.get(confirmSchema, function(error, confirm){
+  prompt.get(confirmSchema, function(err, confirm){
+    if (err) return done(err);
     if(confirm.yes.trim().toLowerCase() == 'yes'){
       console.log('All right, your template is comming right up.\n');
-      done(result);
+      done(null, result);
     }
   });
 }
@@ -132,10 +133,7 @@ confirmOutput = function(result, done){
 promptForInput = function(done){
 
   prompt.get(schema, function (err, result) {
-
-    if(err){
-      throw err;
-    }
+    if (err) return done(err);
 
     if(result['setup-windows-releases'].toLowerCase() == 'yes'){
       //prompt for windows
