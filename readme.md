@@ -4,7 +4,7 @@
 
 Get up and running with a customisable electron build process!
 
-This tool will request some configuration for your new electron project and the:
+This tool will request some configuration for your new electron project and then:
 
 - Unpack a template to the current working directory.
 - Apply your custom configuration
