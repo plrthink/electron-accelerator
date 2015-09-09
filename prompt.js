@@ -10,6 +10,9 @@ colors = require('colors');
 _ = require('underscore');
 pretty = require('js-object-pretty-print').pretty;
 
+prompt.start();
+prompt.message = "";
+prompt.delimiter = " ";
 prompt.override = argv;
 windowsSetup.override = argv;
 
@@ -151,11 +154,6 @@ promptForInput = function(done){
 }
 
 AcceleratorPrompt.prototype.promptForSetup = function(done){
-  prompt.start();
-
-  prompt.message = "";
-  prompt.delimiter = " ";
-
   promptForInput(done);
 }
 
