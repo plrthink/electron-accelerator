@@ -1,11 +1,10 @@
 'use strict'
 
-var AcceleratorPrompt, prompt, confirm, colors, schema, _, windowsSchema,
+var AcceleratorPrompt, prompt, colors, schema, _, windowsSchema,
     confirmSchema, windowsSetup, promptForInput, confirmOutput, pretty, argv;
 
 argv = require('yargs').argv;
 prompt = require('prompt');
-confirm = require('prompt');
 windowsSetup = require('prompt');
 colors = require('colors');
 _ = require('underscore');
@@ -153,7 +152,6 @@ promptForInput = function(done){
 
 AcceleratorPrompt.prototype.promptForSetup = function(done){
   prompt.start();
-  confirm.start();
 
   prompt.message = "";
   prompt.delimiter = " ";
