@@ -11,12 +11,6 @@ echo.
 
 npm install
 
-echo Installing dev tooling dependencies...
-echo.
-
-npm install -g node-inspector
-npm install -g grunt-cli
-
 echo.
 echo ---------------------------------------------------------------
 echo.
