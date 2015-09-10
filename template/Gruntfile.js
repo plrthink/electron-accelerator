@@ -15,8 +15,7 @@ module.exports = function(grunt) {
         appDirectory: 'builds/'+ buildOptions.applicationName +'-win32-x64',
         outputDirectory: buildOptions.releaseDirectory + '/win32/' + buildOptions.applicationName + '-setup',
         authors: buildOptions.authors,
-        exe: buildOptions.applicationName + '.exe',
-        remoteReleases: buildOptions.windowsUpdateUrl
+        exe: buildOptions.applicationName + '.exe'
       }
     }
   });
