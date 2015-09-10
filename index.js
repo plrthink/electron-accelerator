@@ -10,5 +10,6 @@ if (argv.version || argv.v) {
 }
 
 accelerator(function(code){
+  console.log();// empty space to terminate after a new line
   process.exit(code)
 });

@@ -1,16 +1,18 @@
 'use strict'
 
-var AcceleratorPrompt, prompt, confirm, colors, schema, _, windowsSchema,
+var AcceleratorPrompt, prompt, colors, schema, _, windowsSchema,
     confirmSchema, windowsSetup, promptForInput, confirmOutput, pretty, argv;
 
 argv = require('yargs').argv;
 prompt = require('prompt');
-confirm = require('prompt');
 windowsSetup = require('prompt');
 colors = require('colors');
 _ = require('underscore');
 pretty = require('js-object-pretty-print').pretty;
 
+prompt.start();
+prompt.message = "";
+prompt.delimiter = " ";
 prompt.override = argv;
 windowsSetup.override = argv;
 
@@ -112,8 +114,6 @@ confirmSchema = {
   }
 };
 
-AcceleratorPrompt = function(){}
-
 confirmOutput = function(result, done){
   console.log('');
   console.log('Ok, human. How does this look?\n');
@@ -121,10 +121,11 @@ confirmOutput = function(result, done){
   console.log(pretty(result));
   console.log('');
 
-  prompt.get(confirmSchema, function(error, confirm){
+  prompt.get(confirmSchema, function(err, confirm){
+    if (err) return done(err);
     if(confirm.yes.trim().toLowerCase() == 'yes'){
       console.log('All right, your template is comming right up.\n');
-      done(result);
+      done(null, result);
     }
   });
 }
@@ -132,10 +133,7 @@ confirmOutput = function(result, done){
 promptForInput = function(done){
 
   prompt.get(schema, function (err, result) {
-
-    if(err){
-      throw err;
-    }
+    if (err) return done(err);
 
     if(result['setup-windows-releases'].toLowerCase() == 'yes'){
       //prompt for windows
@@ -151,14 +149,8 @@ promptForInput = function(done){
   });
 }
 
-AcceleratorPrompt.prototype.promptForSetup = function(done){
-  prompt.start();
-  confirm.start();
-
-  prompt.message = "";
-  prompt.delimiter = " ";
-
+var promptForSetup = function(done){
   promptForInput(done);
 }
 
-module.exports = new AcceleratorPrompt();
+module.exports = promptForSetup;
