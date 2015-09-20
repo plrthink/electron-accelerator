@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     var buildOptions = grunt.option('buildOptions');
 
     if(process.platform !== 'linux'){
-      grunt.log.warn('Skipping creating linux distributable because the current platform is not linux');
+      grunt.log.warn('Not yet supported: Skipping creating linux distributable');
       return;
     }
 
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     var buildOptions = grunt.option('buildOptions');
 
     if(process.platform !== 'darwn'){
-      grunt.log.warn('Skipping creating darwin distributable because the current platform is not darwin');
+      grunt.log.warn('Not yet supported: Skipping creating darwin distributable');
       return;
     }
 
