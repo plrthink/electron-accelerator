@@ -15,9 +15,9 @@ applyTemplate = function(file, settings){
   fs.writeFileSync(file, rendered);
 };
 
-copyRawTemplate = function(done){
+copyRawTemplate = function(copyTodirectory, done){
   console.log('Creating electron project structure')
-  var options = { src: __dirname + '/template', dest: process.cwd()};
+  var options = { src: __dirname + '/template', dest: copyTodirectory};
   copy(options, function(){
     done();
   })
@@ -32,7 +32,7 @@ applyToTemplates = function(settings){
   console.log('Applying custom configuration');
   var cwd, configFile, packageFile, readMeFile;
 
-  cwd = process.cwd();
+  cwd = settings.directory
   configFile = cwd + '/config.json';
   packageFile = cwd + '/package.json';
   readMeFile = cwd + '/readme.md';
@@ -43,7 +43,7 @@ applyToTemplates = function(settings){
 }
 
 TemplateWriter.prototype.copyTempateWithResult = function(settings, done){
-  copyRawTemplate(function(){
+  copyRawTemplate(settings.directory, function(){
       applyToTemplates(settings);
       done();
   })
