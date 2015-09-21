@@ -27,9 +27,31 @@ writeClosing = function(){
 module.exports = function(yargs, callback){
 
   yargs.reset()
-    .usage('\nUsage: $0 init -d [directory]')
+    .usage('\nUsage: $0 init -d [directory] -p [platform] -a [architecture]')
     .alias('d', 'directory')
+    .describe('d', 'execute in directory')
+    // Platform
+    .alias('p', 'platform')
+    .describe('p', 'build for')
+    .choices('p', ['all', 'darwin', 'win32', 'linux'])
+    // Architecture
+    .alias('a', 'architecture')
+    .describe('a', 'build as ')
+    .choices('a', ['all', 'x64', 'ia32'])
+
+    .describe('application-name', 'the application name')
+    .describe('authors-name', 'application author')
+    .describe('application-description', 'a short description')
+    .describe('repository-url', 'a git url')
+
+    // Windows releases
+    .describe('setup-windows-releases', 'set up windows releases now')
+    .boolean('setup-windows-releases')
+    // Required options
     .demand('d')
+    .demand('platform')
+    .demand('architecture')
+    .wrap(100)
     .argv
 
   writeOpening();
