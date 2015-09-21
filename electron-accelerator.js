@@ -24,7 +24,13 @@ writeClosing = function(){
   console.log('---------------------------------------------------------------\n'.rainbow);
 };
 
-module.exports = function(callback){
+module.exports = function(yargs, callback){
+
+  yargs.reset()
+    .usage('\nUsage: $0 init -d [directory]')
+    .alias('d', 'directory')
+    .demand('d')
+    .argv
 
   writeOpening();
 

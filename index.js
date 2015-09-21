@@ -14,13 +14,7 @@ var yargs = require('yargs')
   command = argv._[0];
 
 if (command === 'init') {
-  yargs.reset()
-    .usage('\nUsage: $0 init -d [directory]')
-    .alias('d', 'directory')
-    .demand('d')
-    .argv
-
-    accelerator(function(code){
+    accelerator(yargs, function(code){
       console.log();// empty space to terminate after a new line
       process.exit(1)
     });
