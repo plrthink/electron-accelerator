@@ -10,9 +10,6 @@ writeOpening = function(){
   console.log();
   console.log('---------------------------------------------------------------\n'.rainbow);
   console.log('Hello Human\n');
-  console.log('I\'d like to help you get started with your electron app\n');
-  console.log('First, I\'ll ask you a few questions');
-  console.log('And then I\'ll create a template that suits your needs\n');
 };
 
 writeClosing = function(){
@@ -43,10 +40,16 @@ module.exports = function(yargs, callback){
     .describe('authors-name', 'application author')
     .describe('application-description', 'a short description')
     .describe('repository-url', 'a git url')
-
-    // Windows releases
     .describe('setup-windows-releases', 'set up windows releases now')
     .boolean('setup-windows-releases')
+
+    //defaults
+    .default('application-name','electron-accelerator')
+    .default('authors-name','human')
+    .default('application-description', '')
+    .default('repository-url', 'http://github.com')
+    .default('setup-windows-releases', false)
+
     // Required options
     .demand('d')
     .demand('platform')
@@ -54,13 +57,21 @@ module.exports = function(yargs, callback){
     .wrap(100)
     .argv
 
-  writeOpening();
+    var options = {
+      'directory' : yargs.argv['directory'],
+      'platform' : yargs.argv['platform'],
+      'architecture' : yargs.argv['architecture'],
+      'application-name' : yargs.argv['application-name'],
+      'authors-name' : yargs.argv['authors-name'],
+      'application-description' : yargs.argv['application-description'],
+      'repository-url' : yargs.argv['repository-url'],
+      'setup-windows-releases' : yargs.argv['setup-windows-releases']
+    }
 
-  prompt(function(err, result){
-    if (err) return callback(1);
-    templateWriter.copyTempateWithResult(result, function(){
-      writeClosing();
-      callback(0);
-    });
+  writeOpening();
+  templateWriter.copyTempateWithResult(options, function(){
+        writeClosing();
+        callback(0);
   });
+
 };
