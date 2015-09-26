@@ -59,7 +59,7 @@ module.exports = function(yargs, callback){
     .default('application-name','electron-accelerator')
     .default('authors-name','human')
     .default('application-description', '')
-    .default('repository-url', 'http://github.com')
+    .default('repository-url', '')
     .default('setup-windows-releases', false)
     .default('debug', false)
 
