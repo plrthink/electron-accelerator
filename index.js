@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var argv = require('yargs').argv;
+var fs = require('fs');
 var accelerator = require('./electron-accelerator');
 
 var yargs = require('yargs')
