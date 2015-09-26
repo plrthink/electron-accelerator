@@ -2,12 +2,12 @@
 var argv = require('yargs').argv;
 var fs = require('fs');
 var accelerator = require('./electron-accelerator');
-var setupWindowsReleases = require('./setup-windows-releases');
+var setupSquirrel = require('./setup-squirrel');
 
 var yargs = require('yargs')
   .usage('\nUsage: $0 <command> [options]')
   .command('init', 'initalise an electron project in a given directory')
-  .command('setup-windows-releases', 'configures an existing electron-accelerator project for windows deployment and automatic update')
+  .command('setup-squirrel', 'setup a project for releases with Squirrel')
   .command('version', 'display the version of electron-accelerator')
   .command('help', 'display help for electron-accelerator')
   .help('h')
@@ -21,20 +21,20 @@ if (command === 'init') {
       console.log();// empty space to terminate after a new line
       process.exit(1)
     });
+}
 
-} else if (command === 'setup-windows-releases')
-    setupWindowsReleases(yargs, function(code){
+if (command === 'setup-squirrel') {
+    setupSquirrel(yargs, function(code){
       console.log();// empty space to terminate after a new line
       process.exit(1)
-});
+    });
+}
 
-} else if (command === 'version'){
-
+if (command === 'version') {
   var packageFile = require('./package.json');
   console.log(packageFile.name + '@' + packageFile.version);
   process.exit();
+}
 
-}
-else {
-  yargs.showHelp();
-}
+// if the process has not been terminated
+yargs.showHelp();
