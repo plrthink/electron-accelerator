@@ -2,10 +2,12 @@
 var argv = require('yargs').argv;
 var fs = require('fs');
 var accelerator = require('./electron-accelerator');
+var setupWindowsReleases = require('./setup-windows-releases');
 
 var yargs = require('yargs')
   .usage('\nUsage: $0 <command> [options]')
   .command('init', 'initalise an electron project in a given directory')
+  .command('setup-windows-releases', 'configures an existing electron-accelerator project for windows deployment and automatic update')
   .command('version', 'display the version of electron-accelerator')
   .command('help', 'display help for electron-accelerator')
   .help('h')
@@ -19,6 +21,12 @@ if (command === 'init') {
       console.log();// empty space to terminate after a new line
       process.exit(1)
     });
+
+} else if (command === 'setup-windows-releases')
+    setupWindowsReleases(yargs, function(code){
+      console.log();// empty space to terminate after a new line
+      process.exit(1)
+});
 
 } else if (command === 'version'){
 
