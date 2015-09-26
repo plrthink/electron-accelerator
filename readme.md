@@ -19,28 +19,29 @@ npm i electron-accelerator -g
 
 ### Usage
 
-In your project directory.
+To initialise an electron project:
 
 ```
 
-Usage: electron-accelerator
+Usage: electron-accelerator init -d [directory] -p [platform] -a [architecture]
 
-This will prompt you to input options.
-You can also supply these at the command line
+Example: electron-accelerator init --authors-name=Amy --application-name=Foo --p=all --a=x64
 
-Example: electron-accelerator --authors-name=Amy --application-name=Foo --platform=all --architecture=x64
+Required arguments:
 
-Required options:
+-d, --directory            execute in directory   
+-p, --platform             build for              [choices: "all", "darwin", "win32", "linux"]
+-a, --architecture         build as               [choices: "all", "x64", "ia32"]
 
-authors-name               any string
-application-name           any string
-platform                   all, linux, win32 or darwin
-architecture               all, ia32 or x64
-application-description    the description of your application
-repository-url             the url of the repository for your application
-setup-windows-releases     yes, no
 
 Optional arguments:
+
+--application-name         the application name         [default: "electron-accelerator"]
+--authors-name             application author           [default: "human"]
+--application-description  a short description          [default: ""]
+--repository-url           a git url                    [default: ""]
+--setup-windows-releases   set up windows releases now  [default: false]
+--debug                    debug output                 [default: false]
 
 squirrel-s3-bucket           the bucket name where a windows installer can be uploaded
 squirrel-s3-bucket-prefix    the bucket prefix
