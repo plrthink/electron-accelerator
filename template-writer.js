@@ -10,19 +10,28 @@ Mustache = require('mustache');
 TemplateWriter = function(){};
 
 applyTemplate = function(file, settings){
+  if(settings.debug){
+    console.log('debug: Applying template to ' + file);
+  }
   var data = fs.readFileSync(file, 'utf8');
   var rendered = Mustache.render(data, settings);
+
+  if(settings.debug){
+    console.log('debug: Rendered file  ' + file);
+    console.log(rendered);
+  }
+
   fs.writeFileSync(file, rendered);
 };
 
-copyRawTemplate = function(done){
+copyRawTemplate = function(settings, done){
   console.log('Creating electron project structure')
-  var options = { src: __dirname + '/template', dest: process.cwd()};
+  var options = { src: __dirname + '/template', dest: settings.directory};
   copy(options, function(){
     done();
   })
   .on('log', function (msg, level) {
-    if(level == 'warn' || level == 'error'){
+  if(level == 'warn' || level == 'error' || (settings.debug && level == 'debug')){
       console.log(level + ': ' + msg)
     }
   });
@@ -30,12 +39,15 @@ copyRawTemplate = function(done){
 
 applyToTemplates = function(settings){
   console.log('Applying custom configuration');
-  var cwd, configFile, packageFile, readMeFile;
+  var configFile, packageFile, readMeFile;
 
-  cwd = process.cwd();
-  configFile = cwd + '/config.json';
-  packageFile = cwd + '/package.json';
-  readMeFile = cwd + '/readme.md';
+  configFile = settings.directory + '/config.json';
+  packageFile = settings.directory + '/package.json';
+  readMeFile = settings.directory + '/readme.md';
+
+  if(settings.debug){
+      console.log('debug: Settings to apply \n' + JSON.stringify(settings));
+  }
 
   applyTemplate(configFile, settings);
   applyTemplate(packageFile, settings);
@@ -43,7 +55,7 @@ applyToTemplates = function(settings){
 }
 
 TemplateWriter.prototype.copyTempateWithResult = function(settings, done){
-  copyRawTemplate(function(){
+  copyRawTemplate(settings, function(){
       applyToTemplates(settings);
       done();
   })
