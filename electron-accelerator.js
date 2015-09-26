@@ -25,30 +25,43 @@ module.exports = function(yargs, callback){
 
   yargs.reset()
     .usage('\nUsage: $0 init -d [directory] -p [platform] -a [architecture]')
-    .alias('d', 'directory')
-    .describe('d', 'execute in directory')
-    // Platform
-    .alias('p', 'platform')
-    .describe('p', 'build for')
-    .choices('p', ['all', 'darwin', 'win32', 'linux'])
-    // Architecture
-    .alias('a', 'architecture')
-    .describe('a', 'build as ')
-    .choices('a', ['all', 'x64', 'ia32'])
 
+    .alias('d', 'directory')
+    .alias('a', 'architecture')
+    .alias('p', 'platform')
+
+    .describe('d', 'execute in directory')
+    .describe('p', 'build for')
+    .describe('a', 'build as ')
     .describe('application-name', 'the application name')
     .describe('authors-name', 'application author')
     .describe('application-description', 'a short description')
     .describe('repository-url', 'a git url')
     .describe('setup-windows-releases', 'set up windows releases now')
-    .boolean('setup-windows-releases')
+    .describe('debug', 'debug output')
 
-    //defaults
+    // choices
+    .choices('p', ['all', 'darwin', 'win32', 'linux'])
+    .choices('a', ['all', 'x64', 'ia32'])
+
+    // types
+    .string('d')
+    .string('a')
+    .string('p')
+    .string('application-name')
+    .string('authors-name')
+    .string('application-description')
+    .string('repository-url')
+    .boolean('setup-windows-releases')
+    .boolean('debug')
+
+    // defaults
     .default('application-name','electron-accelerator')
     .default('authors-name','human')
     .default('application-description', '')
     .default('repository-url', 'http://github.com')
     .default('setup-windows-releases', false)
+    .default('debug', false)
 
     // Required options
     .demand('d')
@@ -65,13 +78,14 @@ module.exports = function(yargs, callback){
       'authors-name' : yargs.argv['authors-name'],
       'application-description' : yargs.argv['application-description'],
       'repository-url' : yargs.argv['repository-url'],
-      'setup-windows-releases' : yargs.argv['setup-windows-releases']
+      'setup-windows-releases' : yargs.argv['setup-windows-releases'],
+      'debug' : yargs.argv['debug']
     }
 
   writeOpening();
-  templateWriter.copyTempateWithResult(options, function(){
-        writeClosing();
-        callback(0);
-  });
 
+  templateWriter.copyTempateWithResult(options, function(){
+      writeClosing();
+      callback(0);
+  });
 };
