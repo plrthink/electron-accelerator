@@ -4,7 +4,9 @@ module.exports = function(yargs, callback){
 
   yargs.reset()
     .usage('\nUsage: $0 setup-squirrel windows')
-    .command('windows', 'sets up squirrel releasess for windows');
+    .command('windows', 'sets up squirrel releasess for windows')
+    .help('h')
+    .alias('h', 'help');
 
   var argv = yargs.argv;
   var command = argv._[0];

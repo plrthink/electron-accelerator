@@ -10,8 +10,6 @@ var yargs = require('yargs')
   .command('setup-squirrel', 'setup a project for releases with Squirrel')
   .command('version', 'display the version of electron-accelerator')
   .command('help', 'display help for electron-accelerator')
-  .help('h')
-  .alias('h', 'help')
   .demand(1, 'must provide a valid command'),
   argv = yargs.argv,
   command = argv._[0];
@@ -36,5 +34,6 @@ if (command === 'version') {
   process.exit();
 }
 
-// if the process has not been terminated
-yargs.showHelp();
+if(command === 'help') {
+  yargs.showHelp();
+}

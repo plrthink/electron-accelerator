@@ -1,5 +1,5 @@
 'use strict'
-var colors, argv, prompt, templateWriter, writeOpening, writeClosing;
+var colors, argv, prompt, templateWriter, writeOpening, writeClosing, init;
 
 colors = require('colors');
 argv = require('yargs').argv;
@@ -21,14 +21,36 @@ writeClosing = function(){
   console.log('---------------------------------------------------------------\n'.rainbow);
 };
 
+init = function(yargs, callback){
+  var options = {
+    'directory' : yargs.argv['directory'],
+    'platform' : yargs.argv['platform'],
+    'architecture' : yargs.argv['architecture'],
+    'application-name' : yargs.argv['application-name'],
+    'authors-name' : yargs.argv['authors-name'],
+    'application-description' : yargs.argv['application-description'],
+    'repository-url' : yargs.argv['repository-url'],
+    'setup-windows-releases' : yargs.argv['setup-windows-releases'],
+    'debug' : yargs.argv['debug']
+  }
+
+  writeOpening();
+
+  templateWriter.copyTempateWithResult(options, function(){
+      writeClosing();
+      callback(0);
+  });
+
+}
+
 module.exports = function(yargs, callback){
 
   yargs.reset()
     .usage('\nUsage: $0 init -d [directory] -p [platform] -a [architecture]')
-
     .alias('d', 'directory')
     .alias('a', 'architecture')
     .alias('p', 'platform')
+    .alias('h', 'help')
 
     .describe('d', 'execute in directory')
     .describe('p', 'build for')
@@ -67,25 +89,16 @@ module.exports = function(yargs, callback){
     .demand('d')
     .demand('platform')
     .demand('architecture')
+    .help('h')
     .wrap(100)
     .argv
 
-    var options = {
-      'directory' : yargs.argv['directory'],
-      'platform' : yargs.argv['platform'],
-      'architecture' : yargs.argv['architecture'],
-      'application-name' : yargs.argv['application-name'],
-      'authors-name' : yargs.argv['authors-name'],
-      'application-description' : yargs.argv['application-description'],
-      'repository-url' : yargs.argv['repository-url'],
-      'setup-windows-releases' : yargs.argv['setup-windows-releases'],
-      'debug' : yargs.argv['debug']
+    if(command === undefined) {
+      init(yargs, callback);
+    }
+    else {
+      yargs.showHelp();
+      process.exit(1);
     }
 
-  writeOpening();
-
-  templateWriter.copyTempateWithResult(options, function(){
-      writeClosing();
-      callback(0);
-  });
 };
