@@ -14,8 +14,8 @@ module.exports = function(yargs, callback){
   var command = argv._[1];
 
   if(command === 'windows-s3'){
-    var setupWindows = require('./setup-squirrel-windows');
-    setupWindows(yargs, function(code){
+    var setupWindowsS3 = require('./setup-squirrel-windows-s3');
+    setupWindowsS3(yargs, function(code){
       console.log();// empty space to terminate after a new line
       process.exit(1)
     });
