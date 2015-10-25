@@ -30,7 +30,6 @@ init = function(yargs, callback){
     'authors-name' : yargs.argv['authors-name'],
     'application-description' : yargs.argv['application-description'],
     'repository-url' : yargs.argv['repository-url'],
-    'setup-windows-releases' : yargs.argv['setup-windows-releases'],
     'debug' : yargs.argv['debug']
   }
 
@@ -59,7 +58,6 @@ module.exports = function(yargs, callback){
     .describe('authors-name', 'application author')
     .describe('application-description', 'a short description')
     .describe('repository-url', 'a git url')
-    .describe('setup-windows-releases', 'set up windows releases now')
     .describe('debug', 'debug output')
 
     // choices
@@ -74,7 +72,6 @@ module.exports = function(yargs, callback){
     .string('authors-name')
     .string('application-description')
     .string('repository-url')
-    .boolean('setup-windows-releases')
     .boolean('debug')
 
     // defaults
@@ -82,7 +79,6 @@ module.exports = function(yargs, callback){
     .default('authors-name','human')
     .default('application-description', '')
     .default('repository-url', '')
-    .default('setup-windows-releases', false)
     .default('debug', false)
 
     // Required options
