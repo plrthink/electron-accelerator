@@ -2,20 +2,31 @@
 
 module.exports = function(yargs, callback){
 
-  yargs.reset()
-    .usage('\nUsage: $0 setup-squirrel windows')
-    .command('windows', 'sets up squirrel releasess for windows')
+  var argv = yargs.reset()
+    .usage('\nUsage: $0 setup-squirrel <command>')
+    .command('windows-s3', 'sets up squirrel releasess for windows via s3')
+    .command('windows-github', 'sets up squirrel releasess for windows via GitHub')
+    .demand(2, 'please specify how you would like to set up squirrel')
     .help('h')
-    .alias('h', 'help');
+    .alias('h', 'help')
+    .argv;
 
-  var argv = yargs.argv;
-  var command = argv._[0];
+  var command = argv._[1];
 
-  if(command === 'windows'){
+  if(command === 'windows-s3'){
     var setupWindows = require('./setup-squirrel-windows');
     setupWindows(yargs, function(code){
       console.log();// empty space to terminate after a new line
       process.exit(1)
     });
+  }
+
+  else if(command == 'windows-github'){
+    console.log('Not yet supported');
+    process.exit(1)
+  }
+
+  else{
+    yargs.showHelp();
   }
 }
