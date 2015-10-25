@@ -9,7 +9,6 @@ var yargs = require('yargs')
   .command('init', 'initalise an electron project in a given directory')
   .command('setup-squirrel', 'setup a project for releases with Squirrel')
   .command('version', 'display the version of electron-accelerator')
-  .demand(1, 'must provide a valid command'),
   argv = yargs.argv,
   command = argv._[0];
 
@@ -32,3 +31,5 @@ if (command === 'version') {
   console.log(packageFile.name + '@' + packageFile.version);
   process.exit();
 }
+
+yargs.showHelp();

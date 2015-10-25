@@ -19,13 +19,26 @@ npm i electron-accelerator -g
 
 ### Usage
 
-To initialise an electron project:
+Electron accelerator has a handful of commands
+
+```
+electron-accelerator <command> [options]
+
+Commands:
+  init            initalise an electron project in a given directory
+  setup-squirrel  setup a project for releases with Squirrel
+  version         display the version of electron-accelerator
 
 ```
 
+### Initalize an Electron project
+
+To initialise an electron project: use the ``init`` commnand:
+
+```
 Usage: electron-accelerator init -d [directory] -p [platform] -a [architecture]
 
-Example: electron-accelerator init --authors-name=Amy --application-name=Foo --p=all --a=x64
+Example: electron-accelerator init -d ./ -p all - a x64
 
 Required arguments:
 
@@ -40,12 +53,7 @@ Optional arguments:
 --authors-name             application author           [default: "human"]
 --application-description  a short description          [default: ""]
 --repository-url           a git url                    [default: ""]
---setup-windows-releases   set up windows releases now  [default: false]
 --debug                    debug output                 [default: false]
-
-squirrel-s3-bucket           the bucket name where a windows installer can be uploaded
-squirrel-s3-bucket-prefix    the bucket prefix
-squirrel-windows-update-url  the url that the windows installer will update from
 
 ```
 
@@ -61,6 +69,38 @@ This will:
   - ``script/server`` - quickly run up your electron build to test
   - ``script/server-debug`` - quickly run up your electron build with node-inspector debugging
 
+### Configure automatic updates
+
+To configure your pre-initalized electron accelerator project for automatic updates via Squirrel, use the ``setup-squirrel`` command.
+
+
+*Right now this only supports setting up squirrel releases for windows via s3 (watch this space)*
+
+#### Usage: setup-squirrel windows
+
+```
+
+Usage: electron-accelerator setup-squirrel windows-s3 -d [directory] -b [bucket] -p [prefix] -u [update-url]
+
+Example: electron-accelerator setup-squirrel windows-s3 -d ./ -b windows-updates -p 'electron' -u http://myapp.com/updates
+
+Required arguments:
+  -d, --directory      the directory of a pre-initalized electron-accelerator project [default: "."]
+  -b, --bucket-name    the s3 bucket that the windows build will be served from
+  -p, --bucket-prefix  the s3 bucket prefix that the windows build will be served from                                                                      
+  -u, --update-url     the url to update from
+
+```
+
+This will write the following entries to your projects ``config.json``
+
+ - ``s3BucketName``
+ - ``s3PrefixName``
+ - ``windowsUpdateUrl``
+
+ And add the following helper scripts to get you started releasing your application.
+
+ - ``script/release`` - quickly release your electron application to any configured squirrel endpoints. 
 
 ### Related projects and reading
 This project stands on the shoulders of giants. It uses the following packages:
