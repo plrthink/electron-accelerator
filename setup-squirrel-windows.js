@@ -2,7 +2,7 @@
 
 module.exports = function(yargs, callback){
   yargs.reset()
-    .usage('\nUsage: $0 setup-squirrel windows s3 -b [bucket] -p [prefix] -u [update-url]')
+    .usage('\nUsage: $0 setup-squirrel windows -b [bucket] -p [prefix] -u [update-url]')
     .command('s3', 'sets up releases on s3 using Squirrel')
     .alias('b', 'squirrel-s3-bucket')
     .alias('p', 'squirrel-s3-bucket-prefix')

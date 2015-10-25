@@ -93,12 +93,5 @@ module.exports = function(yargs, callback){
     .wrap(100)
     .argv
 
-    if(command === undefined) {
-      init(yargs, callback);
-    }
-    else {
-      yargs.showHelp();
-      process.exit(1);
-    }
-
+    init(yargs, callback);
 };
