@@ -9,7 +9,6 @@
     "build": "grunt build",
     "start": "electron .",
     "debug": "grunt debug",
-    "release": "grunt release"
   },
   "devDependencies": {
     "electron-packager": "^5.0.2",
