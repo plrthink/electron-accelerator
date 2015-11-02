@@ -41,6 +41,12 @@ module.exports = function(yargs, callback){
 
     // read in the json file and replace any s3-nodes
     var configFile = options['directory'] + "/config.json";
+
+    if(!fs.exists(configFile)) {
+      console.log("There was no config.json file at that location. Try running electron-accelerator init first.");
+      process.exit(1);
+    }
+
     var data = fs.readFileSync(configFile, 'utf8');
     var config = JSON.parse(data);
 
