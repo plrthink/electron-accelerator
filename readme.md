@@ -94,13 +94,13 @@ Required arguments:
 
 This will write the following entries to your projects ``config.json``
 
- - ``s3BucketName``
- - ``s3PrefixName``
- - ``windowsUpdateUrl``
+ - ``s3BucketName`` The top level bucket for which your app updates will be uploaded to
+ - ``s3PrefixName`` The prefix where your application will live under the given bucket
+ - ``windowsUpdateUrl`` The update Url for your application
 
  And add the following helper scripts to get you started releasing your application.
 
- - ``script/release`` - quickly release your electron application to any configured squirrel endpoints. 
+ - ``script/release`` - quickly release your electron application to any configured squirrel endpoints.
 
 ### Related projects and reading
 This project stands on the shoulders of giants. It uses the following packages:
