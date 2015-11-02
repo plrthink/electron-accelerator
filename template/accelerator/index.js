@@ -12,14 +12,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadTasks('./tasks');
+  grunt.loadTasks('./accelerator/tasks');
 
-  //basic tasks
-  grunt.registerTask('build', [ 'clean', 'buildPackages']);
-  grunt.registerTask('debug', ['debug-app']);
-
-  //additional tasks
-
-  // default task
   grunt.registerTask('default', ['build']);
 };

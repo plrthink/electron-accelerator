@@ -8,7 +8,7 @@
   "scripts": {
     "build": "grunt build",
     "start": "electron .",
-    "debug": "grunt debug",
+    "debug": "grunt debug"
   },
   "devDependencies": {
     "electron-packager": "^5.0.2",
