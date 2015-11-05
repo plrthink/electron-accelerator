@@ -98,14 +98,8 @@ SquirrelUpdater.prototype.checkForUpdates = function() {
         if (error != null) {
           return;
         }
-        require('dialog').showMessageBox({type: "question", message: "Update available, would you like to restart and install now?", buttons: ["No", "Yes"]}, function(response){
-          if (response != 0) {
-            quitAndInstall();
-          } else {
-            require('app').once('window-all-closed', function(){
-              quitAndInstall();
-            });
-          }
+        require('app').once('window-all-closed', function(){
+          quitAndInstall();
         });
       });
     };
