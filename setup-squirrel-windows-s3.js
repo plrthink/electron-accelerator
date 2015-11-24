@@ -1,6 +1,6 @@
 'use strict'
 
-var fs, copy, colors, writeOpening, writeClosing;
+var fs, copy, colors, writeOpening, writeClosing, writeOptionsConfig, writeScriptsToPackageJson;
 
 fs = require('fs');
 copy = require('directory-copy');
@@ -21,7 +21,46 @@ writeClosing = function(){
   console.log('---------------------------------------------------------------\n'.rainbow);
 };
 
+writeOptionsConfig = function(options){
+  var configFile = "config.json";
+  if(!fs.existsSync(configFile)) {
+    console.log("There was no config.json file in this directory.");
+    process.exit(1);
+  }
 
+  var data = fs.readFileSync(configFile, 'utf8');
+  var config = JSON.parse(data);
+
+  if(config){
+    config.s3BucketName = options['s3BucketName'];
+    config.s3PrefixName = options['s3PrefixName'];
+    config.windowsUpdateUrl = options['windowsUpdateUrl'];
+    fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
+  }else{
+    console.log("There was no config.json file in this directory.");
+    process.exit(1);
+  }
+}
+
+writeScriptsToPackageJson = function(){
+  var packageFile = "package.json";
+  if(!fs.existsSync(packageFile)) {
+    console.log("There was no package.json file in this directory.");
+    process.exit(1);
+  }
+
+  var data = fs.readFileSync(packageFile, 'utf8');
+  var config = JSON.parse(data);
+
+  if(config){
+    config.scripts['package-windows'] = 'grunt create-windows-distributable';
+    config.scripts['release-windows'] = 'grunt release-windows-distributable';
+    fs.writeFileSync(packageFile, JSON.stringify(config, null, 2));
+  }else{
+    console.log("There was no package.json file in this directory.");
+    process.exit(1);
+  }
+}
 
 module.exports = function(yargs, callback){
 
@@ -56,25 +95,8 @@ module.exports = function(yargs, callback){
     }
 
     // read in the json file and replace any s3-nodes
-    var configFile = "config.json";
-
-    if(!fs.existsSync(configFile)) {
-      console.log("There was no config.json file in this directory.");
-      process.exit(1);
-    }
-
-    var data = fs.readFileSync(configFile, 'utf8');
-    var config = JSON.parse(data);
-
-    if(config){
-      config.s3BucketName = options['s3BucketName'];
-      config.s3PrefixName = options['s3PrefixName'];
-      config.windowsUpdateUrl = options['windowsUpdateUrl'];
-      fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
-    }else{
-      console.log("There was no config.json file in this directory.");
-      process.exit(1);
-    }
+    writeOptionsConfig(options);
+    writeScriptsToPackageJson();
 
     // copy additional tasks and scripts
     var taskDirectory =  '.';
