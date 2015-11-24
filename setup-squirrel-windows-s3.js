@@ -16,7 +16,7 @@ writeOpening = function(){
 writeClosing = function(){
   console.log();
   console.log('Your electron app is read to release to the windows world!\n');
-  console.log('For more information on how to ship, checkout ship-to-windows.md');
+  console.log('For more information on how to ship, checkout ship-to-windows.md (which is now in your project)');
   console.log('Good luck!\n');
   console.log('---------------------------------------------------------------\n'.rainbow);
 };
