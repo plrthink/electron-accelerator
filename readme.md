@@ -61,7 +61,6 @@ Optional arguments:
 
 This will:
 
-
 - Unpack a template to the current working directory.
 - Apply your custom configuration
 - Write a ``readme.md`` to your project. The read me will describe how to build and release your electron app.
