@@ -1,16 +1,15 @@
-#!/usr/bin/env bash
-
+@echo off
 echo ---------------------------------------------------------------
-echo
+echo.
 echo Hello Human
-echo It''s shipping time!
-echo
+echo It's shipping time!
+echo.
 echo ---------------------------------------------------------------
-echo
+echo.
 
-npm run release
+npm run release-windows
 
-echo
+echo.
 echo ---------------------------------------------------------------
-echo
+echo.
 echo Done!
