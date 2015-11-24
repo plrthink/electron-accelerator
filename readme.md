@@ -41,7 +41,7 @@ Usage: electron-accelerator init -p [platform] -a [architecture]
 Example:
 $ mkdir my-sweet-app
 $ cd my-sweet-app
-$ electron-accelerator init -p all - a x64
+$ electron-accelerator init -p all -a x64 --application-name my-sweet-app
 
 Required arguments:
 
