@@ -1,17 +1,16 @@
 'use strict'
 
-var fs = require('fs')
+var fs = require('fs');
+var copy = require('directory-copy');
 
 module.exports = function(yargs, callback){
 
   var args = yargs.reset()
-    .usage('\nUsage: $0 setup-squirrel windows-s3 -d [directory] -b [bucket] -p [prefix] -u [update-url]')
-    .alias('d', 'directory')
+    .usage('\nUsage: $0 setup-squirrel windows-s3 -b [bucket] -p [prefix] -u [update-url]')
     .alias('b', 'bucket-name')
     .alias('p', 'bucket-prefix')
     .alias('u', 'update-url')
 
-    .describe('d', 'the directory of a previously initalised electron-accelerator project')
     .describe('b', 'the s3 bucket that the windows build will be served from')
     .describe('p', 'the s3 bucket prefix that the windows build will be served from')
     .describe('u', 'the url to update from')
@@ -21,11 +20,7 @@ module.exports = function(yargs, callback){
     .string('p')
     .string('u')
 
-    // defaults
-    .default('directory','.')
-
     // Required options
-    .demand('directory')
     .demand('bucket-name')
     .demand('bucket-prefix')
     .demand('update-url')
@@ -33,17 +28,16 @@ module.exports = function(yargs, callback){
     .argv;
 
     var options = {
-      'directory' : yargs.argv['directory'],
       's3BucketName' : yargs.argv['bucket-name'],
       's3PrefixName' : yargs.argv['bucket-prefix'],
       'windowsUpdateUrl' : yargs.argv['update-url'],
     }
 
     // read in the json file and replace any s3-nodes
-    var configFile = options['directory'] + "/config.json";
+    var configFile = "config.json";
 
-    if(!fs.exists(configFile)) {
-      console.log("There was no config.json file at that location. Try running electron-accelerator init first.");
+    if(!fs.existsSync(configFile)) {
+      console.log("There was no config.json file in this directory.#");
       process.exit(1);
     }
 
@@ -56,7 +50,24 @@ module.exports = function(yargs, callback){
       config.windowsUpdateUrl = options['windowsUpdateUrl'];
       fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
     }else{
-      console.log("No config.json file found at the provided location")
+      console.log("There was no config.json file in this directory.!");
+      process.exit(1);
     }
+
+    // copy additional tasks and scripts
+    var taskDirectory =  './accelerator/tasks';
+    var templateDirectory = __dirname + '/template-windows-s3/accelerator/tasks'
+
+    console.log('Adding squirrel tasks')
+
+    var options = { src: templateDirectory, dest: taskDirectory};
+    copy(options, function(){
+      callback();
+    })
+    .on('log', function (msg, level) {
+    if(level == 'warn' || level == 'error'){
+        console.log(level + ': ' + msg)
+      }
+    });
 
 }
