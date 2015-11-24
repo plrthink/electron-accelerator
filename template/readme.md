@@ -1,6 +1,8 @@
 # {{application-name}}
 
-{{applicationName}} is a cross platform application, built on [Electron](https://github.com/atom/electron)
+{{application-name}} is a cross platform application, built on [Electron](https://github.com/atom/electron)
+
+{{description}}
 
 ### Bootstrap
 
