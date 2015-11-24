@@ -19,17 +19,19 @@ if (command === 'init') {
     });
 }
 
-if (command === 'setup-squirrel') {
+else if (command === 'setup-squirrel') {
     setupSquirrel(yargs, function(code){
       console.log();// empty space to terminate after a new line
       process.exit(1)
     });
 }
 
-if (command === 'version') {
+else if (command === 'version') {
   var packageFile = require('./package.json');
   console.log(packageFile.name + '@' + packageFile.version);
   process.exit();
 }
 
-yargs.showHelp();
+else {
+  yargs.showHelp();
+}

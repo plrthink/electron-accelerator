@@ -23,7 +23,7 @@ writeClosing = function(){
 
 init = function(yargs, callback){
   var options = {
-    'directory' : yargs.argv['directory'],
+    'directory' : '.',
     'platform' : yargs.argv['platform'],
     'architecture' : yargs.argv['architecture'],
     'application-name' : yargs.argv['application-name'],
@@ -45,13 +45,11 @@ init = function(yargs, callback){
 module.exports = function(yargs, callback){
 
   yargs.reset()
-    .usage('\nUsage: $0 init -d [directory] -p [platform] -a [architecture]')
-    .alias('d', 'directory')
+    .usage('\nUsage: $0 init -p [platform] -a [architecture]')
     .alias('a', 'architecture')
     .alias('p', 'platform')
     .alias('h', 'help')
 
-    .describe('d', 'execute in directory')
     .describe('p', 'build for')
     .describe('a', 'build as ')
     .describe('application-name', 'the application name')
@@ -65,7 +63,6 @@ module.exports = function(yargs, callback){
     .choices('a', ['all', 'x64', 'ia32'])
 
     // types
-    .string('d')
     .string('a')
     .string('p')
     .string('application-name')
@@ -75,14 +72,13 @@ module.exports = function(yargs, callback){
     .boolean('debug')
 
     // defaults
-    .default('application-name','electron-accelerator')
+    .default('application-name','electron accelerator')
     .default('authors-name','human')
     .default('application-description', '')
     .default('repository-url', '')
     .default('debug', false)
 
     // Required options
-    .demand('d')
     .demand('platform')
     .demand('architecture')
     .help('h')

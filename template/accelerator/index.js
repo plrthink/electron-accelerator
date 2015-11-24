@@ -5,13 +5,15 @@ module.exports = function(grunt) {
 
   grunt.option('buildOptions', buildOptions);
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks("grunt-extend-config");
+
   grunt.initConfig({
     clean: {
       builds: [buildOptions.buildsDirectory]
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadTasks('./accelerator/tasks');
 
   grunt.registerTask('default', ['build']);

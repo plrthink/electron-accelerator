@@ -33,16 +33,18 @@ Commands:
 
 ### Initalize an Electron project
 
-To initialise an electron project: use the ``init`` commnand:
+To initialise an electron project: use the ``init`` command in the project directory:
 
 ```
-Usage: electron-accelerator init -d [directory] -p [platform] -a [architecture]
+Usage: electron-accelerator init -p [platform] -a [architecture]
 
-Example: electron-accelerator init -d ./ -p all - a x64
+Example:
+$ mkdir my-sweet-app
+$ cd my-sweet-app
+$ electron-accelerator init -p all -a x64 --application-name my-sweet-app
 
 Required arguments:
 
--d, --directory            execute in directory   
 -p, --platform             build for              [choices: "all", "darwin", "win32", "linux"]
 -a, --architecture         build as               [choices: "all", "x64", "ia32"]
 
@@ -58,7 +60,6 @@ Optional arguments:
 ```
 
 This will:
-
 
 - Unpack a template to the current working directory.
 - Apply your custom configuration
