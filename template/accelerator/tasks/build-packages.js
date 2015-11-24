@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         LegalCopyright: "Copyright © " + (new Date().getFullYear()) + " " + buildOptions.authors,
         FileDescription: buildOptions.applicationName,
         OriginalFilename: buildOptions.applicationName,
-        ProductVersion: require('../../package.json').version,
+        ProductVersion: require('./package.json').version,
         ProductName: buildOptions.applicationName
       }
     };
