@@ -1,7 +1,27 @@
 'use strict'
 
-var fs = require('fs');
-var copy = require('directory-copy');
+var fs, copy, colors, writeOpening, writeClosing;
+
+fs = require('fs');
+copy = require('directory-copy');
+colors = require('colors');
+
+writeOpening = function(){
+  console.log();
+  console.log('---------------------------------------------------------------\n'.rainbow);
+  console.log('Hello Human\n')
+  console.log('One moment while I setup squirrel for windows\n');
+};
+
+writeClosing = function(){
+  console.log();
+  console.log('Your electron app is read to release to the windows world!\n');
+  console.log('For more information on how to ship, checkout ship-to-windows.md');
+  console.log('Good luck!\n');
+  console.log('---------------------------------------------------------------\n'.rainbow);
+};
+
+
 
 module.exports = function(yargs, callback){
 
@@ -27,6 +47,8 @@ module.exports = function(yargs, callback){
     .wrap(100)
     .argv;
 
+    writeOpening()
+
     var options = {
       's3BucketName' : yargs.argv['bucket-name'],
       's3PrefixName' : yargs.argv['bucket-prefix'],
@@ -37,7 +59,7 @@ module.exports = function(yargs, callback){
     var configFile = "config.json";
 
     if(!fs.existsSync(configFile)) {
-      console.log("There was no config.json file in this directory.#");
+      console.log("There was no config.json file in this directory.");
       process.exit(1);
     }
 
@@ -50,18 +72,19 @@ module.exports = function(yargs, callback){
       config.windowsUpdateUrl = options['windowsUpdateUrl'];
       fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
     }else{
-      console.log("There was no config.json file in this directory.!");
+      console.log("There was no config.json file in this directory.");
       process.exit(1);
     }
 
     // copy additional tasks and scripts
-    var taskDirectory =  './accelerator/tasks';
-    var templateDirectory = __dirname + '/template-windows-s3/accelerator/tasks'
+    var taskDirectory =  '.';
+    var templateDirectory = __dirname + '/template-windows-s3'
 
-    console.log('Adding squirrel tasks')
+    console.log('Copying squirrel related activities....')
 
     var options = { src: templateDirectory, dest: taskDirectory};
     copy(options, function(){
+      writeClosing();
       callback();
     })
     .on('log', function (msg, level) {
