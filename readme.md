@@ -33,7 +33,7 @@ Commands:
 
 ### Initalize an Electron project
 
-To initialise an electron project: use the ``init`` commnand in the project directory:
+To initialise an electron project: use the ``init`` command in the project directory:
 
 ```
 Usage: electron-accelerator init -p [platform] -a [architecture]
