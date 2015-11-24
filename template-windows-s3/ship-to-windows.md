@@ -9,7 +9,7 @@ Application installation, and automatic updates are driven by [Squirrel](https:/
 To create a [Windows Squirrel installer](https://github.com/Squirrel/Squirrel.Windows/) run:
 
 ```
-  script\package
+  script\package-windows
 ```
 
 This command should be run on a Windows machine.
@@ -19,7 +19,7 @@ This command should be run on a Windows machine.
 To release the Squirrel installer:
 
 ```
-  script\release
+  script\release-windows
 ```
 
 This uploads an installer to S3.
