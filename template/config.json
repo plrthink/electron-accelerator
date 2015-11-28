@@ -1,6 +1,6 @@
 {
   "applicationName"  : "{{application-name}}",
-  "electronVersion"  : "0.27.1",
+  "electronVersion"  : "0.34.4",
   "authors"          : "{{authors-name}}",
 
   "buildsDirectory"  : "./builds",

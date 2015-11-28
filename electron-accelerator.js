@@ -74,7 +74,7 @@ module.exports = function(yargs, callback){
     // defaults
     .default('application-name','electron-accelerator')
     .default('authors-name','human')
-    .default('application-description', '')
+    .default('application-description', 'An electron app with flair')
     .default('repository-url', '')
     .default('debug', false)
 
