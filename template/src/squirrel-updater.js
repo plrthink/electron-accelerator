@@ -98,7 +98,9 @@ SquirrelUpdater.prototype.checkForUpdates = function() {
         if (error != null) {
           return;
         }
-        return quitAndInstall();
+        require('app').once('window-all-closed', function(){
+          quitAndInstall();
+        });
       });
     };
   })(this));
