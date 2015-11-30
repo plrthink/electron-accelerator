@@ -75,30 +75,4 @@ module.exports = function(grunt) {
       });
     }
   });
-
-  grunt.registerTask('release-linux-distributable', 'Releases the distributable for Linux', function() {
-    var buildOptions = grunt.option('buildOptions');
-
-    if(process.platform !== 'linux'){
-      grunt.log.warn('Skipping releasing the linux distributable because the current platform is not linux');
-      return;
-    }
-
-    if(buildOptions.platform == 'all' || buildOptions.platform == 'linux'){
-      grunt.log.writeln('Releasing '+ buildOptions.name +' Linux distributable not implemented');
-    }
-  });
-
-  grunt.registerTask('release-darwin-distributable', 'Releases the distributable for Darwin', function() {
-    var buildOptions = grunt.option('buildOptions');
-
-    if(process.platform !== 'darwn'){
-      grunt.log.warn('Skipping releasing the darwin distributable because the current platform is not darwin');
-      return;
-    }
-
-    if(buildOptions.platform == 'all' || buildOptions.platform == 'darwin'){
-      grunt.log.writeln('Releasing '+ buildOptions.name +' darwn distributable not implemented');
-    }
-  });
 };

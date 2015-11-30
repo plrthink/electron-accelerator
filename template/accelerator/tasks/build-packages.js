@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
   'use strict'
-
+  
   var packager = require('electron-packager');
 
   grunt.registerTask('buildPackages', 'Builds electron packages', function(buildOption) {
@@ -25,4 +25,6 @@ module.exports = function(grunt) {
     packager(options, done);
 
   });
+
+  grunt.registerTask('build', [ 'clean', 'buildPackages']);
 };

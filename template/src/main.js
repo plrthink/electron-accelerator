@@ -1,6 +1,8 @@
+// set up any autoupdating functionality as defined by electron-accelerator
+require('./updater');
+
 var app = require('app');
 var BrowserWindow = require('browser-window');
-var config = require('../config.json');
 
 // Report crashes to our server.
 require('crash-reporter').start();
@@ -8,19 +10,6 @@ require('crash-reporter').start();
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is GCed.
 var mainWindow = null;
-
-if (process.platform === 'win32') {
-
-  var installer = require('./squirrel-installer');
-  var SquirrelUpdater = require('./squirrel-updater');
-  squirrelCommand = process.argv[1];
-  installer.handleStartupEvent(app, squirrelCommand);
-
-  //check for updates
-  var updator = new SquirrelUpdater(config.windowsUpdateUrl);
-  updator.checkForUpdates();
-}
-
 // This method will be called when Electron has done everything
 // initialization and ready for creating browser windows.
 app.on('ready', function() {

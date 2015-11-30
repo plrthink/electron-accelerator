@@ -1,6 +1,6 @@
 {
   "applicationName"  : "{{application-name}}",
-  "electronVersion"  : "0.27.1",
+  "electronVersion"  : "0.34.4",
   "authors"          : "{{authors-name}}",
 
   "buildsDirectory"  : "./builds",
@@ -17,9 +17,5 @@
     "node-inspector",
     "open",
     "progressbar",
-    "s3"],
-
-   "s3BucketName"    : "{{squirrel-s3-bucket}}",
-   "s3PrefixName"    : "{{squirrel-s3-bucket-prefix}}",
-   "windowsUpdateUrl": "{{squirrel-windows-update-url}}"
+    "s3"]
 }
