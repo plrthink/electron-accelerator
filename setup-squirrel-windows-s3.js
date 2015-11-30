@@ -70,18 +70,16 @@ writeDefaultUpdater = function(callback){
 }
 
 appendUpdater = function(){
-  console.log('update called')
   var updaterJsFile = 'src/updater.js'
   if(!fs.existsSync(updaterJsFile)) {
 
-    console.log(updaterJsFile + " did not exist");
+    console.log(updaterJsFile + " did not exist. Creating default");
 
     writeDefaultUpdater(appendUpdater)
   }
 
   var templateUpdater = __dirname + '/template-windows-s3/src/updater.js'
   var appendContents = fs.readFileSync(templateUpdater);
-  console.log('calling append')
   fs.appendFileSync(updaterJsFile, appendContents);
 }
 
