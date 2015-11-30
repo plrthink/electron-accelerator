@@ -1,6 +1,7 @@
 'use strict'
 
-var fs, copy, colors, writeOpening, writeClosing, writeOptionsConfig, writeScriptsToPackageJson;
+var fs, copy, colors, writeOpening, writeClosing, writeOptionsConfig, writeScriptsToPackageJson,
+    writeDefaultUpdater, appendUpdater;
 
 fs = require('fs');
 copy = require('directory-copy');
@@ -62,6 +63,28 @@ writeScriptsToPackageJson = function(){
   }
 }
 
+writeDefaultUpdater = function(callback){
+  var defaultUpdater = __dirname + '/template/src/updater.js'
+  var srcUpdater =  './src/updater.js';
+  fs.writeFileSync(srcUpdater, fs.readFileSync(defaultUpdater));
+}
+
+appendUpdater = function(){
+  console.log('update called')
+  var updaterJsFile = 'src/updater.js'
+  if(!fs.existsSync(updaterJsFile)) {
+
+    console.log(updaterJsFile + " did not exist");
+
+    writeDefaultUpdater(appendUpdater)
+  }
+
+  var templateUpdater = __dirname + '/template-windows-s3/src/updater.js'
+  var appendContents = fs.readFileSync(templateUpdater);
+  console.log('calling append')
+  fs.appendFileSync(updaterJsFile, appendContents);
+}
+
 module.exports = function(yargs, callback){
 
   var args = yargs.reset()
@@ -104,8 +127,14 @@ module.exports = function(yargs, callback){
 
     console.log('Copying squirrel related activities....')
 
-    var options = { src: templateDirectory, dest: taskDirectory};
+    var options = {
+        src: templateDirectory,
+        dest: taskDirectory,
+        excludes : [/src\/updater.js/]
+    };
+
     copy(options, function(){
+      appendUpdater();
       writeClosing();
       callback();
     })
@@ -114,5 +143,4 @@ module.exports = function(yargs, callback){
         console.log(level + ': ' + msg)
       }
     });
-
 }
