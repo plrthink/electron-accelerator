@@ -6,6 +6,9 @@
   "bin": {
     "electron-accelerator": "index.js"
   },
+  "scripts": {
+    "lint": "standard"
+  },
   "keywords": [
     "Build",
     "Debug",
@@ -25,5 +28,8 @@
     "underscore": "^1.8.3",
     "js-object-pretty-print": "^0.2.0",
     "yargs": "^3.24.0"
+  },
+  "devDependencies": {
+    "standard": "^5.4.1"
   }
 }
