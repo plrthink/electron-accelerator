@@ -1,15 +1,15 @@
 module.exports = function(grunt) {
   'use strict'
   
-  var packager = require('electron-packager');
+  var packager = require('electron-packager')
 
   grunt.registerTask('buildPackages', 'Builds electron packages', function(buildOption) {
-    var buildOptions, done, options;
+    var buildOptions, done, options
 
-    buildOptions = grunt.option('buildOptions');
-    done = this.async();
+    buildOptions = grunt.option('buildOptions')
+    done = this.async()
 
-    grunt.log.subhead('Building '+ buildOptions.applicationName +' for '+ buildOptions.platform +' platform(s)\n');
+    grunt.log.subhead('Building '+ buildOptions.applicationName +' for '+ buildOptions.platform +' platform(s)\n')
 
     options = {
       dir:  './',
@@ -20,11 +20,11 @@ module.exports = function(grunt) {
       out: buildOptions.buildsDirectory,
       ignore: buildOptions.ignorePackages,
       asar: true
-    };
+    }
 
-    packager(options, done);
+    packager(options, done)
 
-  });
+  })
 
-  grunt.registerTask('build', [ 'clean', 'buildPackages']);
-};
+  grunt.registerTask('build', [ 'clean', 'buildPackages'])
+}

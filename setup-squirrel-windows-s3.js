@@ -1,86 +1,86 @@
 'use strict'
 
 var fs, copy, colors, writeOpening, writeClosing, writeOptionsConfig, writeScriptsToPackageJson,
-    writeDefaultUpdater, appendUpdater;
+    writeDefaultUpdater, appendUpdater
 
-fs = require('fs');
-copy = require('directory-copy');
-colors = require('colors');
+fs = require('fs')
+copy = require('directory-copy')
+colors = require('colors')
 
 writeOpening = function(){
-  console.log();
-  console.log('---------------------------------------------------------------\n'.rainbow);
+  console.log()
+  console.log('---------------------------------------------------------------\n'.rainbow)
   console.log('Hello Human\n')
-  console.log('One moment while I setup squirrel for windows\n');
-};
+  console.log('One moment while I setup squirrel for windows\n')
+}
 
 writeClosing = function(){
-  console.log();
-  console.log('Your electron app is read to release to the windows world!\n');
-  console.log('For more information on how to ship, checkout ship-to-windows.md (which is now in your project)');
-  console.log('Good luck!\n');
-  console.log('---------------------------------------------------------------\n'.rainbow);
-};
+  console.log()
+  console.log('Your electron app is read to release to the windows world!\n')
+  console.log('For more information on how to ship, checkout ship-to-windows.md (which is now in your project)')
+  console.log('Good luck!\n')
+  console.log('---------------------------------------------------------------\n'.rainbow)
+}
 
 writeOptionsConfig = function(options){
-  var configFile = "config.json";
+  var configFile = "config.json"
   if(!fs.existsSync(configFile)) {
-    console.log("There was no config.json file in this directory.");
-    process.exit(1);
+    console.log("There was no config.json file in this directory.")
+    process.exit(1)
   }
 
-  var data = fs.readFileSync(configFile, 'utf8');
-  var config = JSON.parse(data);
+  var data = fs.readFileSync(configFile, 'utf8')
+  var config = JSON.parse(data)
 
   if(config){
-    config.s3BucketName = options['s3BucketName'];
-    config.s3PrefixName = options['s3PrefixName'];
-    config.windowsUpdateUrl = options['windowsUpdateUrl'];
-    fs.writeFileSync(configFile, JSON.stringify(config, null, 2));
+    config.s3BucketName = options['s3BucketName']
+    config.s3PrefixName = options['s3PrefixName']
+    config.windowsUpdateUrl = options['windowsUpdateUrl']
+    fs.writeFileSync(configFile, JSON.stringify(config, null, 2))
   }else{
-    console.log("There was no config.json file in this directory.");
-    process.exit(1);
+    console.log("There was no config.json file in this directory.")
+    process.exit(1)
   }
 }
 
 writeScriptsToPackageJson = function(){
-  var packageFile = "package.json";
+  var packageFile = "package.json"
   if(!fs.existsSync(packageFile)) {
-    console.log("There was no package.json file in this directory.");
-    process.exit(1);
+    console.log("There was no package.json file in this directory.")
+    process.exit(1)
   }
 
-  var data = fs.readFileSync(packageFile, 'utf8');
-  var config = JSON.parse(data);
+  var data = fs.readFileSync(packageFile, 'utf8')
+  var config = JSON.parse(data)
 
   if(config){
-    config.scripts['package-windows'] = 'grunt create-windows-distributable';
-    config.scripts['release-windows'] = 'grunt release-windows-distributable';
-    fs.writeFileSync(packageFile, JSON.stringify(config, null, 2));
+    config.scripts['package-windows'] = 'grunt create-windows-distributable'
+    config.scripts['release-windows'] = 'grunt release-windows-distributable'
+    fs.writeFileSync(packageFile, JSON.stringify(config, null, 2))
   }else{
-    console.log("There was no package.json file in this directory.");
-    process.exit(1);
+    console.log("There was no package.json file in this directory.")
+    process.exit(1)
   }
 }
 
 writeDefaultUpdater = function(callback){
   var defaultUpdater = __dirname + '/template/src/updater.js'
-  var srcUpdater =  './src/updater.js';
-  fs.writeFileSync(srcUpdater, fs.readFileSync(defaultUpdater));
+  var srcUpdater =  './src/updater.js'
+  fs.writeFileSync(srcUpdater, fs.readFileSync(defaultUpdater))
 }
 
 appendUpdater = function(){
   var updaterJsFile = 'src/updater.js'
   if(!fs.existsSync(updaterJsFile)) {
 
-    console.log(updaterJsFile + " did not exist. Creating default");
+    console.log(updaterJsFile + " did not exist. Creating default")
 
     writeDefaultUpdater(appendUpdater)
   }
 
   var templateUpdater = __dirname + '/template-windows-s3/src/updater.js'
-  var appendContents = fs.readFileSync(templateUpdater);
-  fs.appendFileSync(updaterJsFile, appendContents);
+  var appendContents = fs.readFileSync(templateUpdater)
+  fs.appendFileSync(updaterJsFile, appendContents)
 }
 
 module.exports = function(yargs, callback){
@@ -105,7 +105,7 @@ module.exports = function(yargs, callback){
     .demand('bucket-prefix')
     .demand('update-url')
     .wrap(100)
-    .argv;
+    .argv
 
     writeOpening()
 
@@ -116,11 +116,11 @@ module.exports = function(yargs, callback){
     }
 
     // read in the json file and replace any s3-nodes
-    writeOptionsConfig(options);
-    writeScriptsToPackageJson();
+    writeOptionsConfig(options)
+    writeScriptsToPackageJson()
 
     // copy additional tasks and scripts
-    var taskDirectory =  '.';
+    var taskDirectory =  '.'
     var templateDirectory = __dirname + '/template-windows-s3'
 
     console.log('Copying squirrel related activities....')
@@ -129,16 +129,16 @@ module.exports = function(yargs, callback){
         src: templateDirectory,
         dest: taskDirectory,
         excludes : [/src\/updater.js/]
-    };
+    }
 
     copy(options, function(){
-      appendUpdater();
-      writeClosing();
-      callback();
+      appendUpdater()
+      writeClosing()
+      callback()
     })
     .on('log', function (msg, level) {
     if(level == 'warn' || level == 'error'){
         console.log(level + ': ' + msg)
       }
-    });
+    })
 }

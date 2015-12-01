@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
-  'use strict';
+  'use strict'
 
   // init electron-accelerator grunt tasks
-  require('./accelerator')(grunt);
-};
+  require('./accelerator')(grunt)
+}

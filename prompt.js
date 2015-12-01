@@ -1,20 +1,20 @@
 'use strict'
 
 var AcceleratorPrompt, prompt, colors, schema, _, windowsSchema,
-    confirmSchema, windowsSetup, promptForInput, confirmOutput, pretty, argv;
+    confirmSchema, windowsSetup, promptForInput, confirmOutput, pretty, argv
 
-argv = require('yargs').argv;
-prompt = require('prompt');
-windowsSetup = require('prompt');
-colors = require('colors');
-_ = require('underscore');
-pretty = require('js-object-pretty-print').pretty;
+argv = require('yargs').argv
+prompt = require('prompt')
+windowsSetup = require('prompt')
+colors = require('colors')
+_ = require('underscore')
+pretty = require('js-object-pretty-print').pretty
 
-prompt.start();
-prompt.message = "";
-prompt.delimiter = " ";
-prompt.override = argv;
-windowsSetup.override = argv;
+prompt.start()
+prompt.message = ""
+prompt.delimiter = " "
+prompt.override = argv
+windowsSetup.override = argv
 
 schema = {
   properties: {
@@ -47,8 +47,8 @@ schema = {
       description: 'Which platform will your app run on?'.magenta + ' all, win32, darwin or linux'.gray,
       type: 'string',
       conform: function (value) {
-        var x = value.trim();
-        return x === 'all' || x === 'win32' || x === 'darwin' || x === 'linux';
+        var x = value.trim()
+        return x === 'all' || x === 'win32' || x === 'darwin' || x === 'linux'
       },
       required: true,
       message: 'Must be one of the following: all, win32, darwin or linux'.red
@@ -58,8 +58,8 @@ schema = {
       description: 'Which architecture will your app run on?'.magenta + ' all, ia32 or x64'.grey,
       type: 'string',
       conform: function (value) {
-        var x = value.trim();
-        return x === 'all' || x === 'ia32' || x === 'x64';
+        var x = value.trim()
+        return x === 'all' || x === 'ia32' || x === 'x64'
       },
       required: true,
       message: 'Must be one of the following: all, ia32 or x64'.red
@@ -69,14 +69,14 @@ schema = {
       description: 'Do you want to setup Windows releases'.magenta + ' yes or no'.gray,
       type: 'string',
       conform: function (value) {
-        var x = value.toLowerCase().trim();
-        return x === 'yes' || x === 'no';
+        var x = value.toLowerCase().trim()
+        return x === 'yes' || x === 'no'
       },
       required: true,
       message: 'Must be yes or no'.red
     }
   }
-};
+}
 
 windowsSchema = {
   properties: {
@@ -102,7 +102,7 @@ windowsSchema = {
       message: 'Update url  must not have spaces'.red
     }
   }
-};
+}
 
 confirmSchema = {
   properties: {
@@ -112,45 +112,45 @@ confirmSchema = {
       required: true
     }
   }
-};
+}
 
 confirmOutput = function(result, done){
-  console.log('');
-  console.log('Ok, human. How does this look?\n');
+  console.log('')
+  console.log('Ok, human. How does this look?\n')
 
-  console.log(pretty(result));
-  console.log('');
+  console.log(pretty(result))
+  console.log('')
 
   prompt.get(confirmSchema, function(err, confirm){
-    if (err) return done(err);
+    if (err) return done(err)
     if(confirm.yes.trim().toLowerCase() == 'yes'){
-      console.log('All right, your template is comming right up.\n');
-      done(null, result);
+      console.log('All right, your template is comming right up.\n')
+      done(null, result)
     }
-  });
+  })
 }
 
 promptForInput = function(done){
 
   prompt.get(schema, function (err, result) {
-    if (err) return done(err);
+    if (err) return done(err)
 
     if(result['setup-windows-releases'].toLowerCase() == 'yes'){
       //prompt for windows
       windowsSetup.get(windowsSchema, function(error, windowsResult){
             if(err){
-              throw err;
+              throw err
             }
-            confirmOutput(_.extend(result, windowsResult),done);
-      });
+            confirmOutput(_.extend(result, windowsResult),done)
+      })
     }else {
-      confirmOutput(result,done);
+      confirmOutput(result,done)
     }
-  });
+  })
 }
 
 var promptForSetup = function(done){
-  promptForInput(done);
+  promptForInput(done)
 }
 
-module.exports = promptForSetup;
+module.exports = promptForSetup
