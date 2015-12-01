@@ -1,9 +1,7 @@
 'use strict'
-var colors, argv, prompt, templateWriter, writeOpening, writeClosing, init;
+var argv, prompt, templateWriter, writeOpening, writeClosing, init;
 
-colors = require('colors');
-argv = require('yargs').argv;
-prompt = require('./prompt');
+require('colors');
 templateWriter = require('./template-writer');
 
 writeOpening = function(){
