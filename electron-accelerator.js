@@ -81,5 +81,5 @@ module.exports = function (yargs, callback) {
     .wrap(100)
     .argv
 
-    init(yargs, callback)
+  init(yargs, callback)
 }
