@@ -1,5 +1,6 @@
 # Electron-accelerator
 
+[![Build Status](https://travis-ci.org/ammeep/electron-accelerator.svg?branch=master)](https://travis-ci.org/ammeep/electron-accelerator)
 [![npm version](https://badge.fury.io/js/electron-accelerator.svg)](http://badge.fury.io/js/electron-accelerator)
 
 Get up and running with a customisable electron build process!
