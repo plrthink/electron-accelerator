@@ -1,49 +1,45 @@
 'use strict'
-var colors, argv, prompt, templateWriter, writeOpening, writeClosing, init;
+var templateWriter, writeOpening, writeClosing, init
 
-colors = require('colors');
-argv = require('yargs').argv;
-prompt = require('./prompt');
-templateWriter = require('./template-writer');
+require('colors')
+templateWriter = require('./template-writer')
 
-writeOpening = function(){
-  console.log();
-  console.log('---------------------------------------------------------------\n'.rainbow);
-  console.log('Hello Human\n');
-};
-
-writeClosing = function(){
-  console.log();
-  console.log('Your electron app is ready to go!\n');
-  console.log('To boostrap your application run \'script\/bootstrap\'');
-  console.log('Be sure to check out your projects readme.md for more information\n');
-  console.log('Good luck!\n');
-  console.log('---------------------------------------------------------------\n'.rainbow);
-};
-
-init = function(yargs, callback){
-  var options = {
-    'directory' : '.',
-    'platform' : yargs.argv['platform'],
-    'architecture' : yargs.argv['architecture'],
-    'application-name' : yargs.argv['application-name'],
-    'authors-name' : yargs.argv['authors-name'],
-    'application-description' : yargs.argv['application-description'],
-    'repository-url' : yargs.argv['repository-url'],
-    'debug' : yargs.argv['debug']
-  }
-
-  writeOpening();
-
-  templateWriter.copyTempateWithResult(options, function(){
-      writeClosing();
-      callback(0);
-  });
-
+writeOpening = function () {
+  console.log()
+  console.log('---------------------------------------------------------------\n'.rainbow)
+  console.log('Hello Human\n')
 }
 
-module.exports = function(yargs, callback){
+writeClosing = function () {
+  console.log()
+  console.log('Your electron app is ready to go!\n')
+  console.log('To boostrap your application run \'script\/bootstrap\'')
+  console.log('Be sure to check out your projects readme.md for more information\n')
+  console.log('Good luck!\n')
+  console.log('---------------------------------------------------------------\n'.rainbow)
+}
 
+init = function (yargs, callback) {
+  var options = {
+    'directory': '.',
+    'platform': yargs.argv['platform'],
+    'architecture': yargs.argv['architecture'],
+    'application-name': yargs.argv['application-name'],
+    'authors-name': yargs.argv['authors-name'],
+    'application-description': yargs.argv['application-description'],
+    'repository-url': yargs.argv['repository-url'],
+    'debug': yargs.argv['debug']
+  }
+
+  writeOpening()
+
+  templateWriter.copyTempateWithResult(options, function () {
+    writeClosing()
+    callback(0)
+  })
+}
+
+module.exports = function (yargs, callback) {
   yargs.reset()
     .usage('\nUsage: $0 init -p [platform] -a [architecture]')
     .alias('a', 'architecture')
@@ -67,13 +63,13 @@ module.exports = function(yargs, callback){
     .string('p')
     .string('application-name')
     .string('authors-name')
-    .string('application-description')
+    .string('application-desc ription')
     .string('repository-url')
     .boolean('debug')
 
     // defaults
-    .default('application-name','electron-accelerator')
-    .default('authors-name','human')
+    .default('application-name', 'electron-accelerator')
+    .default('authors-name', 'human')
     .default('application-description', 'An electron app with flair')
     .default('repository-url', '')
     .default('debug', false)
@@ -85,5 +81,5 @@ module.exports = function(yargs, callback){
     .wrap(100)
     .argv
 
-    init(yargs, callback);
-};
+  init(yargs, callback)
+}
