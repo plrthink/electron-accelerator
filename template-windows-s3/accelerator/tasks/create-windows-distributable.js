@@ -17,14 +17,14 @@ module.exports = function (grunt) {
           exe: buildOptions.applicationName + '.exe'
         }
       }
-     })
+    })
 
-    if(process.platform !== 'win32'){
+    if (process.platform !== 'win32') {
       grunt.log.warn('Skipping creating win32 distributable because the current platform is not win32')
       return
     }
 
-    if(buildOptions.platform == 'all' || buildOptions.platform == 'win32'){
+    if (buildOptions.platform === 'all' || buildOptions.platform === 'win32') {
       grunt.task.run('create-windows-installer:x64')
     }
   })
