@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 'use strict'
-var argv, accelerator, setupSquirrel, yargs, command, packageFile
+var argv, accelerator, setupSquirrel, yargs, command, packageFile, setupDarwinDistributable
 
 argv = require('yargs').argv
 accelerator = require('./electron-accelerator')
@@ -23,6 +23,12 @@ if (command === 'init') {
   })
 } else if (command === 'setup-squirrel') {
   setupSquirrel(yargs, function (code) {
+    console.log()// empty space to terminate after a new line
+    process.exit(1)
+  })
+} else if (command === 'setup-darwin-distributable') {
+  setupDarwinDistributable = require('./setup-darwin-distributable')
+  setupDarwinDistributable(yargs, function(code) {
     console.log()// empty space to terminate after a new line
     process.exit(1)
   })

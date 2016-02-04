@@ -1,0 +1,19 @@
+{
+
+  "title": "{{application-name}}",
+
+  "icon": "./resources/darwin/drive.icns",
+
+  "background": "./resources/darwin/dmg-background.png",
+
+  "icon-size": 128,
+
+  "contents": [
+
+    { "x": 410, "y": 240, "type": "link", "path": "/Applications" },
+
+    { "x": 130, "y": 240, "type": "file", "path": "./builds/{{application-name}}-darwin-x64/{{application-name}}.app" }
+
+  ]
+
+}
